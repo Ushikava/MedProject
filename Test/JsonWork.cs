@@ -53,10 +53,9 @@ namespace Test
                 Directory.CreateDirectory(mydocu);
             }
 
-            Console.WriteLine(patient[0]);
-
+            var patientInfo = patient[0].Item1;
             var serializer = new JsonSerializer();
-            using (StreamWriter fs = new StreamWriter(mydocu + '\\' + patient[0] + ".json")) // need change later 
+            using (StreamWriter fs = new StreamWriter(mydocu + '\\' + patientInfo.GUID + ".json")) // need change later 
             {
                 using (var jsonTextWriter = new JsonTextWriter(fs))
                 {

@@ -16,7 +16,9 @@ namespace Test
             var testInf = new Tests(34, 35);
             var summ = Tuple.Create(ptinf, testInf);
             list.Add(summ);
+            Console.WriteLine(summ.Item1);
             JsonWork.add_patient_info(list);
+
             //List<Patient> ptlist = new List<Patient>();
             //var pt = new Patient("имя", "фамилия", "отчество", "дата");
 
