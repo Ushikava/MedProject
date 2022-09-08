@@ -64,11 +64,16 @@ namespace Test
             }
         }
 
-        //public static List<Tuple<Info, Tests>> get_patients_info(int guid)
-        //{
-        //    List<Tuple<Info, Tests>> list;
+        public static List<Tuple<Info, Tests>> get_patients_info(int guid)
+        {
+            List<Tuple<Info, Tests>> patientInfo;
 
-        //    return list;
-        //}
+            using (StreamReader file = File.OpenText("@" + guid + ".json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                patientInfo = (List <Tuple<Info, Tests>>)serializer.Deserialize(file, typeof(List<Tuple<Info, Tests>>));
+            }
+            return patientInfo;
+        }
     }
 }
