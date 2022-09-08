@@ -56,7 +56,7 @@ namespace Test
             Console.WriteLine(patient[0]);
 
             var serializer = new JsonSerializer();
-            using (StreamWriter fs = new StreamWriter(mydocu + '\\' + patient[0].Item2 + ".json"))
+            using (StreamWriter fs = new StreamWriter(mydocu + '\\' + patient[0] + ".json")) // need change later 
             {
                 using (var jsonTextWriter = new JsonTextWriter(fs))
                 {
