@@ -52,7 +52,7 @@ namespace Test
             return listOfPatients;
         }
 
-        public static void SavePatientInfo(PatientInfo patient, TestResult testResult)
+        public static void SavePatientInfo(PatientInfo patient, IEnumerable<TestResult> testResult)
         {
 
             if (!PatiensFolder.Exists)

@@ -40,15 +40,20 @@ namespace Test
         {
             GUID = Guid.Empty;
         }
-        public PatientInfo (Guid id, string fname, string lname, string mname, DateTime birth, string gen, string descr)
+        public PatientInfo (string fname, string lname, string mname, DateTime birth, string gen, string descr="")
         {
-            GUID = id;
+            GUID = Guid.NewGuid();
             F_Name = fname;
             L_Name = lname;
             M_Name = mname;
             Birthday = birth;
             Gender = gen;
             Description = descr;
+        }
+
+        public Patient GetPatientCut()
+        {
+            return new Patient(F_Name, L_Name, M_Name, DateTime.Now) { GUID = GUID};
         }
     }
 
