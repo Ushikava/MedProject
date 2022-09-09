@@ -15,6 +15,9 @@ namespace Test
         public string M_Name { get; set; }            //отчество
         public DateTime Research_Date { get; set; }   //дата исследования
 
+        public static Patient EMPTY => new Patient();
+
+        private Patient() { }
         public Patient(string fname, string lname, string mname, DateTime rdate)
         {
             GUID = Guid.NewGuid();
@@ -35,8 +38,9 @@ namespace Test
         public DateTime Birthday { get; set; }      //дата рождения
         public string Gender { get; set; }          //может быть только два!
         public string Description { get; set; }     //заметки
+        public static PatientInfo EMPTY => new PatientInfo();
 
-        public PatientInfo ()
+        private PatientInfo ()
         {
             GUID = Guid.Empty;
         }
@@ -63,16 +67,12 @@ namespace Test
         public string name { get; set; }
         public string diagnosis { get; set; }
         public Dictionary<string, int> results { get; set; } = new();
+        public DateTime completeTime { get; set; }
 
         public TestResult(string st, string rt)
         {
             name = st;
             diagnosis = rt;
-        }
-
-        public void AddTagResult(string tag, int result)
-        {
-            results.Add(tag, result);
         }
     }
 }

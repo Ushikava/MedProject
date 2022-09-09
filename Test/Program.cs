@@ -16,7 +16,7 @@ namespace Test
             }
         }
 
-        static void CreateTestPatients()
+        public static void CreateTestPatients()
         {
 
             var rnd = new Random();
@@ -34,26 +34,25 @@ namespace Test
             List<TestResult> tr = new();
             TestResult testResult = new("test1", "ok");
             testResult.GUID = Guid.NewGuid();
-            testResult.AddTagResult("def", 100);
+            testResult.results = new Dictionary<string, int>{ { "def", 100} };
             tr.Add(testResult);
             testResult = new("test2", "mb");
             testResult.GUID = Guid.NewGuid();
-            testResult.AddTagResult("def", 50);
-            testResult.AddTagResult("K", 50);
+            testResult.results = new Dictionary<string, int>{ { "def", 50 }, { "K", 50 } };
             tr.Add(testResult);
             JsonWork.SavePatientInfo(ptInfos[0], tr);
             tr.Clear();
 
             testResult = new("test1", "no");
             testResult.GUID = Guid.NewGuid();
-            testResult.AddTagResult("def", 13);
+            testResult.results = new Dictionary<string, int>{ { "def", 130 } };
             tr.Add(testResult);
             JsonWork.SavePatientInfo(ptInfos[1], tr);
             tr.Clear();
 
             testResult = new("test1", "mb");
             testResult.GUID = Guid.NewGuid();
-            testResult.AddTagResult("def", 50);
+            testResult.results = new Dictionary<string, int>{ { "def", 50 } };
             tr.Add(testResult);
             JsonWork.SavePatientInfo(ptInfos[2], tr);
             tr.Clear();

@@ -39,7 +39,23 @@ namespace WpfApp1
         {
             if (e.AddedItems.Count > 0)
             {
-                //Descr.Text = e.AddedItems[0].
+                Guid guid = (e.AddedItems[0] as Test.Patient).GUID;
+
+                var pt = Test.JsonWork.GetPatientInfo(guid);
+
+                Descr.Text = pt.patient.Description;
+
+                TestResults.Text = "";
+                foreach (var test_res in pt.testResult)
+                {
+
+                    TestResults.Text += $"\n[{test_res.completeTime}]\n";
+                    TestResults.Text += $"{test_res.name} {test_res.diagnosis}\n";
+
+                    foreach(var tag in test_res.results)
+                        TestResults.Text += $"\t{tag.Key}: {tag.Value}\n";
+                }
+
             }
         }
     }

@@ -26,10 +26,10 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock Margin="3" Text="empty" Name="Descr"
+        <TextBlock Margin="3" Text="-" Name="Descr"
                    Grid.Column="2" />
         
-        <TextBlock Margin="3" Text="empty"
+        <TextBlock Margin="3" Text="-" Name="TestResults"
                    Grid.Column="2" Grid.Row="2"/>
     </Grid>
 </Window>

@@ -61,20 +61,34 @@ namespace Test
             }
 
             var serializer = new JsonSerializer();
-            using (StreamWriter fs = new StreamWriter(PatiensFolder + "\\" + patient.GUID.ToString() + ".json")) // need change later 
+            using (StreamWriter fs = new StreamWriter(PatiensFolder + "\\" + patient.GUID.ToString() + ".json"))
             {
                 using (var jsonTextWriter = new JsonTextWriter(fs))
                 {
-                    serializer.Serialize(fs, new { patient, testResult });
+                    serializer.Serialize(fs, new { patient, testResult});
                 }
             }
         }
 
-        //public static List<Tuple<Info, Tests>> get_patients_info(int guid)
-        //{
-        //    List<Tuple<Info, Tests>> list;
+        public static (PatientInfo patient, List<TestResult> testResult) GetPatientInfo(Guid guid)
+        {
 
-        //    return list;
-        //}
+            var tests = new List<TestResult>();
+            var patient = new { patient = PatientInfo.EMPTY, testResult = tests};
+
+            if (!PatiensFolder.Exists)
+            {
+                PatiensFolder.Create();
+                return (patient.patient, patient.testResult);
+            }
+
+
+            using (StreamReader fs = new StreamReader(PatiensFolder + "\\" + guid.ToString() + ".json"))
+            {
+                patient = JsonConvert.DeserializeAnonymousType(fs.ReadToEnd(), patient);
+            }
+
+            return (patient.patient, patient.testResult);
+        }
     }
 }
