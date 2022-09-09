@@ -9,7 +9,7 @@ namespace Test
 {
     public class Patient
     {
-        public Guid GUID { get; set; }                //id
+        public Guid GUID { get; set; } = Guid.Empty;  //id
         public string F_Name { get; set; }            //имя
         public string L_Name { get; set; }            //фамилия
         public string M_Name { get; set; }            //отчество
@@ -26,9 +26,9 @@ namespace Test
 
     }
 
-    public class Info
+    public class PatientInfo
     {
-        public Guid GUID { get; set; }              //id
+        public Guid GUID { get; set; } = Guid.Empty;//id
         public string F_Name { get; set; }          //имя
         public string L_Name { get; set; }          //фамилия
         public string M_Name { get; set; }          //отчество
@@ -36,7 +36,11 @@ namespace Test
         public string Gender { get; set; }          //может быть только два!
         public string Description { get; set; }     //заметки
 
-        public Info (Guid id, string fname, string lname, string mname, DateTime birth, string gen, string descr)
+        public PatientInfo ()
+        {
+            GUID = Guid.Empty;
+        }
+        public PatientInfo (Guid id, string fname, string lname, string mname, DateTime birth, string gen, string descr)
         {
             GUID = id;
             F_Name = fname;
@@ -48,15 +52,22 @@ namespace Test
         }
     }
 
-    public class Tests
+    public class TestResult
     {
-        public int Sheehan_Test { get; set; }
-        public int Representative_Test { get; set; }
+        public Guid GUID { get; set; }
+        public string name { get; set; }
+        public string diagnosis { get; set; }
+        public Dictionary<string, int> results { get; set; } = new();
 
-        public Tests(int st, int rt)
+        public TestResult(string st, string rt)
         {
-            Sheehan_Test = st;
-            Representative_Test = rt;
+            name = st;
+            diagnosis = rt;
+        }
+
+        public void AddTagResult(string tag, int result)
+        {
+            results.Add(tag, result);
         }
     }
 }

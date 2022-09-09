@@ -10,19 +10,20 @@ namespace Test
 {
     public class JsonWork
     {
-        public static void add_patient(List<Patient> patients)
+        //const string MyDocs = "/TestProgramm/Patients";
+        static string MyDocs => Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\TestProgramm";
+        static DirectoryInfo PatiensFolder => new (MyDocs + @"\Patients");
+        static DirectoryInfo TestsFolder => new (MyDocs + "/Patients");
+
+        public static void SavePatienList(List<Patient> patients)
         {
-            string mydocu = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            mydocu += "/TestProgramm/Patients";
-            var directory = new DirectoryInfo(mydocu);
-            
-            if (!directory.Exists)
+            if (!PatiensFolder.Exists)
             {
-                Directory.CreateDirectory(mydocu);
+                PatiensFolder.Create();
             }
 
             var serializer = new JsonSerializer();
-            using (StreamWriter fs = new StreamWriter(mydocu + "\\patients.json"))
+            using (StreamWriter fs = new StreamWriter(PatiensFolder + "\\patients.json"))
             {
                 using (var jsonTextWriter = new JsonTextWriter(fs))
                 {
@@ -31,36 +32,40 @@ namespace Test
             }
         }
 
-        public static List<Patient> get_patients()
+        public static List<Patient> GetPatientList()
         {
+            if (!PatiensFolder.Exists)
+            {
+                PatiensFolder.Create();
+                return new List<Patient>();
+            }
+
             List<Patient> listOfPatients;
-            using (StreamReader file = File.OpenText(@"patients.json"))
+
+            using (StreamReader file = File.OpenText(PatiensFolder + "\\patients.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 listOfPatients = (List<Patient>)serializer.Deserialize(file, typeof(List<Patient>));
+
             }
+
             return listOfPatients;
         }
 
-        public static void add_patient_info(List<Tuple<Info, Tests>> patient)
+        public static void SavePatientInfo(PatientInfo patient, TestResult testResult)
         {
-            string mydocu = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            mydocu += "/TestProgramm/Patients";
-            var directory = new DirectoryInfo(mydocu);
 
-            if (!directory.Exists)
+            if (!PatiensFolder.Exists)
             {
-                Directory.CreateDirectory(mydocu);
+                PatiensFolder.Create();
             }
 
-            Console.WriteLine(patient[0]);
-
             var serializer = new JsonSerializer();
-            using (StreamWriter fs = new StreamWriter(mydocu + '\\' + patient[0] + ".json")) // need change later 
+            using (StreamWriter fs = new StreamWriter(PatiensFolder + "\\" + patient.GUID.ToString() + ".json")) // need change later 
             {
                 using (var jsonTextWriter = new JsonTextWriter(fs))
                 {
-                    serializer.Serialize(fs, patient);
+                    serializer.Serialize(fs, new { patient, testResult });
                 }
             }
         }

@@ -10,25 +10,27 @@ namespace Test
         static void Main(string[] args)
         {
             Guid newId = Guid.NewGuid();
-            DateTime data = DateTime.Now;
-            List<Tuple<Info, Tests>> list = new List<Tuple<Info, Tests>>();
-            var ptinf = new Info(newId, "имя", "фамилия", "отчество", data, "м", "больной");
-            var testInf = new Tests(34, 35);
-            var summ = Tuple.Create(ptinf, testInf);
-            list.Add(summ);
-            JsonWork.add_patient_info(list);
+            PatientInfo patient = new PatientInfo();
+            patient.F_Name = "1";
+
+            TestResult testResult = new("test1", "ok");
+            testResult.GUID = Guid.NewGuid();
+            testResult.AddTagResult("def", 100);
+
+            JsonWork.SavePatientInfo(patient, testResult);
+
             //List<Patient> ptlist = new List<Patient>();
-            //var pt = new Patient("имя", "фамилия", "отчество", "дата");
+            //var pt = new Patient("имя", "фамилия", "отчество", DateTime.Now);
 
-            //ptlist.Add(pt);
-            //ptlist.Add(pt);
-            //ptlist.Add(pt);
+            //ptlist.Add(new Patient("1", "0", "o", DateTime.Now));
+            //ptlist.Add(new Patient("2", "0", "o", DateTime.Now));
+            //ptlist.Add(new Patient("3", "0", "o", DateTime.Now));
 
-            //JsonWork.add_patient(ptlist);
-            //var list = JsonWork.get_patients();
+            //JsonWork.SavePatienList(ptlist);
+            //var list = JsonWork.GetPatientList();
             //foreach (var one in list)
             //{
-            //    Console.WriteLine(one.M_Name);
+            //    Console.WriteLine(one.F_Name);
             //}
         }
     }
