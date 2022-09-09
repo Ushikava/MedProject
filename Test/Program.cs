@@ -9,12 +9,11 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            //CreateTestPatients();
-            //var list = JsonWork.GetPatientList();
-            //foreach (var one in list)
-            //{
-            //    Console.WriteLine(one.F_Name);
-            //}
+            var list = JsonWork.LoadPatientList();
+            foreach (var one in list)
+            {
+                Console.WriteLine(one.F_Name);
+            }
         }
 
         static void CreateTestPatients()

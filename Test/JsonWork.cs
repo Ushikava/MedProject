@@ -32,7 +32,7 @@ namespace Test
             }
         }
 
-        public static List<Patient> GetPatientList()
+        public static List<Patient> LoadPatientList()
         {
             if (!PatiensFolder.Exists)
             {

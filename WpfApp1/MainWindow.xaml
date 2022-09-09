@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <DataGrid Grid.RowSpan="2" Name="grid" AutoGenerateColumns="False" Margin="3"
+                  SelectionChanged="grid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="f" Binding="{Binding Path=F_Name}"/>
+                <DataGridTextColumn Header="m" Binding="{Binding Path=M_Name}"/>
+                <DataGridTextColumn Header="l" Binding="{Binding Path=L_Name}"/>
+                <DataGridTextColumn Header="d" Binding="{Binding Path=Research_Date}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Margin="3" Text="empty" Name="Descr"
+                   Grid.Column="2" />
+        
+        <TextBlock Margin="3" Text="empty"
+                   Grid.Column="2" Grid.Row="2"/>
+    </Grid>
+</Window>
