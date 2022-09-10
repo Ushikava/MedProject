@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Test
 {
-    public class Patient
+    public class PatientInfo
     {
         public Guid GUID { get; set; } = Guid.Empty;  //id
         public string F_Name { get; set; }            //имя
@@ -15,10 +15,10 @@ namespace Test
         public string M_Name { get; set; }            //отчество
         public DateTime Research_Date { get; set; }   //дата исследования
 
-        public static Patient EMPTY => new Patient();
+        public static PatientInfo EMPTY => new PatientInfo();
 
-        private Patient() { }
-        public Patient(string fname, string lname, string mname, DateTime rdate)
+        private PatientInfo() { }
+        public PatientInfo(string fname, string lname, string mname, DateTime rdate)
         {
             GUID = Guid.NewGuid();
             F_Name = fname;
@@ -29,7 +29,7 @@ namespace Test
 
     }
 
-    public class PatientInfo
+    public class Patient
     {
         public Guid GUID { get; set; } = Guid.Empty;//id
         public string F_Name { get; set; }          //имя
@@ -38,13 +38,13 @@ namespace Test
         public DateTime Birthday { get; set; }      //дата рождения
         public string Gender { get; set; }          //может быть только два!
         public string Description { get; set; }     //заметки
-        public static PatientInfo EMPTY => new PatientInfo();
+        public static Patient EMPTY => new Patient();
 
-        private PatientInfo ()
+        private Patient ()
         {
             GUID = Guid.Empty;
         }
-        public PatientInfo (string fname, string lname, string mname, DateTime birth, string gen, string descr="")
+        public Patient (string fname, string lname, string mname, DateTime birth, string gen, string descr="")
         {
             GUID = Guid.NewGuid();
             F_Name = fname;
@@ -55,9 +55,9 @@ namespace Test
             Description = descr;
         }
 
-        public Patient GetPatientCut()
+        public PatientInfo GetPatientCut()
         {
-            return new Patient(F_Name, L_Name, M_Name, DateTime.Now) { GUID = GUID};
+            return new PatientInfo(F_Name, L_Name, M_Name, DateTime.Now) { GUID = GUID};
         }
     }
 
@@ -66,7 +66,7 @@ namespace Test
         public Guid GUID { get; set; }
         public string name { get; set; }
         public string diagnosis { get; set; }
-        public Dictionary<string, int> results { get; set; } = new();
+        public List<TagResult> results { get; set; } = new();
         public DateTime completeTime { get; set; }
 
         public TestResult(string st, string rt)

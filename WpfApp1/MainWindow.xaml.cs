@@ -20,8 +20,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Test.Patient> Patients {
-            get => Test.JsonWork.LoadPatientList();
+        public List<Test.PatientInfo> Patients {
+            get => Test.JsonWork.LoadListOfPatientInfo();
         }
 
         public MainWindow()
@@ -31,7 +31,7 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var t = Test.JsonWork.LoadPatientList();
+            var t = Test.JsonWork.LoadListOfPatientInfo();
             grid.ItemsSource = t;
         }
 
@@ -39,7 +39,7 @@ namespace WpfApp1
         {
             if (e.AddedItems.Count > 0)
             {
-                Guid guid = (e.AddedItems[0] as Test.Patient).GUID;
+                Guid guid = (e.AddedItems[0] as Test.PatientInfo).GUID;
 
                 var pt = Test.JsonWork.GetPatientInfo(guid);
 
