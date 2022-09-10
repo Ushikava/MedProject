@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Test
 {
@@ -57,15 +59,44 @@ namespace Test
             Result = result;
         }
     }
+
+    public enum SubType
+    {
+        Question,
+        QuestionRateAnswer,
+        QuestionTest,
+    }
+
+    [JsonConverter(typeof(SubTypeClassConverter))]
     public class Question
     {
+        static readonly Dictionary<Type, SubType> typeToSubType;
+        static readonly Dictionary<SubType, Type> subTypeToType;
+
+        static Question()
+        {
+            typeToSubType = new Dictionary<Type, SubType>()
+            {
+                { typeof(Question), SubType.Question },
+                { typeof(QuestionRateAnswer), SubType.QuestionRateAnswer },
+                { typeof(QuestionTest), SubType.QuestionTest },
+            };
+            subTypeToType = typeToSubType.ToDictionary(pair => pair.Value, pair => pair.Key);
+        }
+
+        public static Type GetType(SubType subType)
+        {
+            return subTypeToType[subType];
+        }
+
+        [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))] // Serialize enums by name rather than numerical value
+        public SubType Type { get { return typeToSubType[GetType()]; } }
+
+
         public string Text { get; set; }
         public List<string> Answers { get; set; }
         public List<string> AnswerTags { get; set; } = new List<string>() { Test.DEFAULT_TAG };
-    }
-    public class QuestionTest : Question
-    {
-        public string Foo { get; set; } = "Foo";
+
     }
     public class QuestionRateAnswer : Question
     {
@@ -73,4 +104,10 @@ namespace Test
         public int MinRate { get; set; }
         public bool UnicValues { get; set; }
     }
+    public class QuestionTest : Question
+    {
+        public string Foo { get; set; } = "Foo";
+    }
+
+
 }

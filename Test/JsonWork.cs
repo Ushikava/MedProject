@@ -73,7 +73,7 @@ namespace Test
             }
         }
 
-        public static (Patient patient, List<TestResult> testResult) GetPatientInfo(Guid guid)
+        public static (Patient patient, List<TestResult> testResult) LoadPatient(Guid guid)
         {
             var tests = new List<TestResult>();
             var patient = new { patient = Patient.EMPTY, testResult = tests};
@@ -105,16 +105,60 @@ namespace Test
                 TestsFolder.Create();
             }
 
-            var serializer = new JsonSerializer();
             using (StreamWriter fs = new StreamWriter(TestsFolder + "\\" + test.GUID.ToString() + ".json"))
             {
+                var serializer = new JsonSerializer();
                 using (var jsonTextWriter = new JsonTextWriter(fs))
                 {
                     serializer.Serialize(fs, test);
                 }
             }
         }
+        public static void LoadTest(Guid guid)
+        {
+            using (StreamReader fs = new StreamReader($"{TestsFolder}\\{guid.ToString()}.json"))
+            {
+                var serializer = new JsonSerializer();
+                var t = (Test)serializer.Deserialize(fs, typeof(Test));
+            }
+        }
 
         #endregion
     }
+    #region QuestionCOnverter
+    public class SubTypeClassConverter : JsonConverter
+    {
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(Question);
+        }
+
+        public override bool CanWrite { get { return false; } }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var token = Newtonsoft.Json.Linq.JToken.Load(reader);
+            var typeToken = token["Type"];
+            if (typeToken == null)
+                throw new InvalidOperationException("invalid object");
+            var actualType = Question.GetType(typeToken.ToObject<SubType>(serializer));
+            if (existingValue == null || existingValue.GetType() != actualType)
+            {
+                var contract = serializer.ContractResolver.ResolveContract(actualType);
+                existingValue = contract.DefaultCreator();
+            }
+            using (var subReader = token.CreateReader())
+            {
+                // Using "populate" avoids infinite recursion.
+                serializer.Populate(subReader, existingValue);
+            }
+            return existingValue;
+        }
+
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    #endregion
 }

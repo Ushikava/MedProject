@@ -41,7 +41,7 @@ namespace WpfApp1
             {
                 Guid guid = (e.AddedItems[0] as Test.PatientInfo).GUID;
 
-                var pt = Test.JsonWork.GetPatientInfo(guid);
+                var pt = Test.JsonWork.LoadPatient(guid);
 
                 Descr.Text = pt.patient.Description;
 

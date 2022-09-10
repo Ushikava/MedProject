@@ -10,13 +10,15 @@ namespace Test
         public static void CreateExampleTest()
         {
             Test t = new Test(
-                "test1", 
-                "just test1", 
-                new() { Test.DEFAULT_TAG }, 
-                new() {
-                    new QuestionRateAnswer() { 
-                        Text="quest1",
-                        Answers = new() { "ans 1", "ans 2", "ans 3", "ans 4"},
+                "test1",
+                "just test1",
+                new() { Test.DEFAULT_TAG },
+                new()
+                {
+                    new QuestionRateAnswer()
+                    {
+                        Text = "quest1",
+                        Answers = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
                         AnswerTags = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
@@ -35,17 +37,63 @@ namespace Test
                         AnswerTags = new() { Test.DEFAULT_TAG },
                     }
                 },
-                new() {
-                    { 
-                        Test.DEFAULT_TAG , new (){
-                            { "no",  3 },
-                            { "mb",  2 },
+                new()
+                {
+                    {
+                        Test.DEFAULT_TAG,
+                        new()
+                        {
+                            { "no", 3 },
+                            { "mb", 2 },
                             { "yes", 1 }
                         }
                     }
                 }
                 );
+            Test t2 = new Test(
+                "test2",
+                "another test, test2",
+                new() { Test.DEFAULT_TAG, "K", "V", "A", "D" },
+                new()
+                {
+                    new QuestionRateAnswer()
+                    {
+                        Text = "quest1",
+                        Answers = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
+                        AnswerTags = new() { "K", "V", "A", "D" },
+                        MaxRate = 4,
+                        MinRate = 0,
+                        UnicValues = false
+                    },
+                    new QuestionRateAnswer()
+                    {
+                        Text = "quest2",
+                        Answers = new() { "ans 1", "ans 4", "ans 3", "ans 2" },
+                        AnswerTags = new() { "K", "D", "A", "V" },
+                        MaxRate = 4,
+                        MinRate = 0,
+                        UnicValues = true
+                    },
+                },
+                new()
+                {
+                    {
+                        Test.DEFAULT_TAG,
+                        new()
+                        {
+                            { "no", 3 },
+                            { "mb", 2 },
+                            { "yes", 1 }
+                        }
+                    },
+                    { "K", new() { { "K isn`t ok", 3 }, { "K is ok", 1 }, { "K is perfect", 0 } } },
+                    { "V", new() { { "V isn`t ok", 3 }, { "V is ok", 1 }, { "V is perfect", 0 } } },
+                    { "A", new() { { "A isn`t ok", 3 }, { "A is ok", 1 }, { "A is perfect", 0 } } },
+                    { "D", new() { { "D isn`t ok", 3 }, { "D is ok", 1 }, { "D is perfect", 0 } } },
+                }
+                );
             JsonWork.SaveTest(t);
+            JsonWork.SaveTest(t2);
         }
         public static void CreateExamplePatients()
         {
