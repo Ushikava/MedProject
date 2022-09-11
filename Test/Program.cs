@@ -112,12 +112,12 @@ namespace Test
 
             List<TestResult> tr = new();
             TestResult testResult = new("test1", "ok");
-            testResult.GUID = Guid.NewGuid();
+            testResult.TestGUID = Guid.NewGuid();
             testResult.results = new List<TagResult>{ new( "def", 100) };
             testResult.completeTime = DateTime.Now - new TimeSpan(1, 10, 1, 0);
             tr.Add(testResult);
             testResult = new("test2", "mb");
-            testResult.GUID = Guid.NewGuid();
+            testResult.TestGUID = Guid.NewGuid();
             testResult.results = new List<TagResult> { new("def", 50 ), new("K", 50 )};
             testResult.completeTime = DateTime.Now - new TimeSpan(7, 10, 1, 0);
             tr.Add(testResult);
@@ -125,7 +125,7 @@ namespace Test
             tr.Clear();
 
             testResult = new("test1", "no");
-            testResult.GUID = Guid.NewGuid();
+            testResult.TestGUID = Guid.NewGuid();
             testResult.results = new List<TagResult> { new("def", 130 ) };
             testResult.completeTime = DateTime.Now - new TimeSpan(10, 1, 0);
             tr.Add(testResult);
@@ -133,14 +133,26 @@ namespace Test
             tr.Clear();
 
             testResult = new("test1", "mb");
-            testResult.GUID = Guid.NewGuid();
+            testResult.TestGUID = Guid.NewGuid();
             testResult.results = new List<TagResult> { new("def", 50) };
             testResult.completeTime = DateTime.Now - new TimeSpan(25 ,10, 1, 0);
             tr.Add(testResult);
+            ptInfos[2].TestResults.Add(testResult);
             JsonWork.SavePatient(ptInfos[2], tr);
             tr.Clear();
 
             JsonWork.SaveListOfPatientInfo(ptlist);
+        }
+        public static Patient GetExamplePatient()
+        {
+            Patient pt = new Patient("Al", "Van", "Hell", new DateTime(1999, 2, 1), "муж");
+
+            TestResult testResult = new("test1", "ok");
+            testResult.TestGUID = Guid.NewGuid();
+            testResult.results = new List<TagResult> { new("def", 50), new("K", 50) };
+            testResult.completeTime = DateTime.Now - new TimeSpan(7, 10, 1, 0);
+            pt.TestResults.Add(testResult);
+            return pt;
         }
     }
 }

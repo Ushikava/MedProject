@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -15,16 +15,26 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <DataGrid Grid.RowSpan="2" Name="grid" AutoGenerateColumns="False" Margin="3"
+        <DockPanel Grid.RowSpan="2">
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="add" Margin="3" Click="Button_Click"/>
+                <Button Grid.Column="1" Content="remove" Margin="3"/>
+            </Grid>
+
+            <DataGrid  Name="grid" AutoGenerateColumns="False" Margin="3"
                   SelectionChanged="grid_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="f" Binding="{Binding Path=F_Name}"/>
-                <DataGridTextColumn Header="m" Binding="{Binding Path=M_Name}"/>
-                <DataGridTextColumn Header="l" Binding="{Binding Path=L_Name}"/>
-                <DataGridTextColumn Header="d" Binding="{Binding Path=Research_Date}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="f" Binding="{Binding Path=F_Name}"/>
+                    <DataGridTextColumn Width="*" Header="m" Binding="{Binding Path=M_Name}"/>
+                    <DataGridTextColumn Width="*" Header="l" Binding="{Binding Path=L_Name}"/>
+                    <DataGridTextColumn Width="*" Header="d" Binding="{Binding Path=Research_Date}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
 
         <TextBlock Margin="3" Text="-" Name="Descr"
                    Grid.Column="2" />

@@ -38,6 +38,7 @@ namespace Test
         public DateTime Birthday { get; set; }      //дата рождения
         public string Gender { get; set; }          //может быть только два!
         public string Description { get; set; }     //заметки
+        public List<TestResult> TestResults { get; set; } = new();
         public static Patient EMPTY => new Patient();
 
         private Patient ()
@@ -63,15 +64,15 @@ namespace Test
 
     public class TestResult
     {
-        public Guid GUID { get; set; }
-        public string name { get; set; }
+        public Guid TestGUID { get; set; }
+        public string TestName { get; set; }
         public string diagnosis { get; set; }
         public List<TagResult> results { get; set; } = new();
         public DateTime completeTime { get; set; }
 
         public TestResult(string st, string rt)
         {
-            name = st;
+            TestName = st;
             diagnosis = rt;
         }
     }

@@ -20,19 +20,18 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Test.PatientInfo> Patients {
-            get => Test.JsonWork.LoadListOfPatientInfo();
-        }
+        public List<Test.PatientInfo> Patients { get; private set; }
 
         public MainWindow()
         {
             InitializeComponent();
+            ReloadPatientIfoList();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        public void ReloadPatientIfoList()
         {
-            var t = Test.JsonWork.LoadListOfPatientInfo();
-            grid.ItemsSource = t;
+            Patients = Test.JsonWork.LoadListOfPatientInfo();
+            grid.ItemsSource = Patients;
         }
 
         private void grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -40,23 +39,38 @@ namespace WpfApp1
             if (e.AddedItems.Count > 0)
             {
                 Guid guid = (e.AddedItems[0] as Test.PatientInfo).GUID;
-
-                var pt = Test.JsonWork.LoadPatient(guid);
-
-                Descr.Text = pt.patient.Description;
-
-                TestResults.Text = "";
-                foreach (var test_res in pt.testResult)
-                {
-
-                    TestResults.Text += $"\n[{test_res.completeTime}]\n";
-                    TestResults.Text += $"{test_res.name} {test_res.diagnosis}\n";
-
-                    foreach(var tag in test_res.results)
-                        TestResults.Text += $"\t{tag.Key}: {tag.Value}\n";
-                }
-
+                LoadPatientDescr(guid);
             }
+        }
+
+        private void LoadPatientDescr(Guid guid)
+        {
+            var pt = Test.JsonWork.LoadPatient(guid);
+
+            Descr.Text = pt.patient.Description;
+
+            TestResults.Text = "";
+            foreach (var test_res in pt.testResult)
+            {
+
+                TestResults.Text += $"\n[{test_res.completeTime}]\n";
+                TestResults.Text += $"{test_res.TestName} {test_res.diagnosis}\n";
+
+                foreach (var tag in test_res.results)
+                    TestResults.Text += $"\t{tag.Tag}: {tag.Result}\n";
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Test.Patient patient = new Test.Patient();
+
+
+            Patients.Add(patient.GetPatientCut());
+
+            Test.JsonWork.SaveListOfPatientInfo(Patients);
+            Test.JsonWork.SavePatient(patient, new List<Test.TestResult>());
+            ReloadPatientIfoList();
         }
     }
 }
