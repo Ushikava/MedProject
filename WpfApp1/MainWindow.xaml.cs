@@ -73,7 +73,7 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Patient patient = Test.Program.CreateExamplePatient();
+            Patient patient = Program.CreateExamplePatient();
 
 
             Patients.Add(patient.GetPatientCut());

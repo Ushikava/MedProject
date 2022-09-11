@@ -144,7 +144,22 @@ namespace Test
 
             TestResult testResult = new("test1", "ok");
             testResult.TestGUID = Guid.NewGuid();
-            testResult.results = new List<TagResult> { new("def", 50), new("K", 50) };
+            testResult.results = new List<TagResult> { new("def", 4) };
+            testResult.completeTime = DateTime.Now - new TimeSpan(7, 10, 1, 0);
+            pt.TestResults.Add(testResult);
+            testResult = new("test2", "mb");
+            testResult.TestGUID = Guid.NewGuid();
+            testResult.results = new List<TagResult> { new("def", 2), new("K",3), new("A", 1), new("V", 2), new("D", 1) };
+            testResult.completeTime = DateTime.Now - new TimeSpan(7, 10, 1, 0);
+            pt.TestResults.Add(testResult);
+            testResult = new("test2", "mb");
+            testResult.TestGUID = Guid.NewGuid();
+            testResult.results = new List<TagResult> { new("def", 2), new("K",3), new("A", 1), new("V", 2), new("D", 1) };
+            testResult.completeTime = DateTime.Now - new TimeSpan(7, 10, 1, 0);
+            pt.TestResults.Add(testResult);
+            testResult = new("test2", "mb");
+            testResult.TestGUID = Guid.NewGuid();
+            testResult.results = new List<TagResult> { new("def", 2), new("K",3), new("A", 1), new("V", 2), new("D", 1) };
             testResult.completeTime = DateTime.Now - new TimeSpan(7, 10, 1, 0);
             pt.TestResults.Add(testResult);
             return pt;
