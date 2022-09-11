@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using System.Collections;
 
 namespace Test
 {
@@ -15,17 +16,18 @@ namespace Test
         static FileInfo PatiensFile => new (MyDocs + @"\Patients\patients.json");
         static DirectoryInfo PatiensFolder => new (MyDocs + @"\Patients");
         static DirectoryInfo TestsFolder => new (MyDocs + @"\Tests");
+        static FileInfo TestsFile => new (MyDocs + @"\Tests\Tests.json");
 
         #region Patients
-        public static void SaveListOfPatientInfo(List<PatientInfo> patients)
+        public static void SavePatientsInfoList(List<PatientInfo> patients)
         {
-            if (!PatiensFile.Exists)
+            if (!PatiensFolder.Exists)
             {
-                PatiensFile.Create();
+                PatiensFolder.Create();
             }
 
             var serializer = new JsonSerializer();
-            using (StreamWriter fs = new StreamWriter(PatiensFile.FullName))
+            using (var fs = new StreamWriter(PatiensFile.FullName))
             {
                 using (var jsonTextWriter = new JsonTextWriter(fs))
                 {
@@ -34,7 +36,7 @@ namespace Test
             }
         }
 
-        public static List<PatientInfo> LoadListOfPatientInfo()
+        public static List<PatientInfo> LoadPatientsInfoList()
         {
             if (!PatiensFile.Exists)
             {
@@ -54,6 +56,8 @@ namespace Test
 
             return listOfPatients;
         }
+
+
 
         public static void SavePatient(Patient patient)
         {
@@ -107,7 +111,43 @@ namespace Test
         }
         #endregion
 
-        #region 
+        #region Tests
+        public static void SaveTestInfoList(List<TestInfo> testInfos)
+        {
+            if (TestsFolder.Exists == false)
+            {
+                TestsFolder.Create();
+            }
+
+            var serializer = new JsonSerializer();
+            using (StreamWriter fs = new StreamWriter(TestsFile.FullName))
+            {
+                using (var jsonTextWriter = new JsonTextWriter(fs))
+                {
+                    serializer.Serialize(fs, testInfos);
+                }
+            }
+        }
+        public static List<TestInfo> LoadTestInofList()
+        {
+            var testsInfoList = new List<TestInfo>();
+
+            if (TestsFile.Exists == false)
+            {
+                TestsFile.Create();
+                return testsInfoList;
+            }
+
+            using (StreamReader file = File.OpenText(TestsFile.FullName))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                testsInfoList = (List<TestInfo>)serializer.Deserialize(file, typeof(List<TestInfo>));
+            }
+
+            return testsInfoList;
+        }
+
+
 
         public static void SaveTest(Test test)
         {
@@ -137,6 +177,13 @@ namespace Test
 
         #endregion
     }
+
+
+
+
+
+
+
     #region QuestionCOnverter
     public class SubTypeClassConverter : JsonConverter
     {

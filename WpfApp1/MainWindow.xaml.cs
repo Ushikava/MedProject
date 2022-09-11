@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Test;
 
-namespace WpfApp1
+namespace TestV
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,7 +22,7 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         public List<Test.PatientInfo> Patients { get; private set; }
-        private Patient selectedPAtient;
+        private Patient selectedPAtient = Patient.EMPTY;
 
         public MainWindow()
         {
@@ -32,7 +32,7 @@ namespace WpfApp1
 
         public void ReloadPatientIfoList()
         {
-            Patients = JsonWork.LoadListOfPatientInfo();
+            Patients = JsonWork.LoadPatientsInfoList();
             grid.ItemsSource = Patients;
         }
 
@@ -44,12 +44,14 @@ namespace WpfApp1
                 try
                 {
                     selectedPAtient = JsonWork.LoadPatient(guid);
+                    NewTestBtn.IsEnabled = true;
                 }
                 catch (Exception ex) 
                 {
                     MessageBox.Show($"Ошибка при загрузке пациента [{ex.Message}]");
                     selectedPAtient = Patient.EMPTY;
                     selectedPAtient.GUID = guid;
+                    NewTestBtn.IsEnabled = false;
                 }
                 UpdatePatientDescr(selectedPAtient);
             }
@@ -71,24 +73,40 @@ namespace WpfApp1
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NewPatientButton(object sender, RoutedEventArgs e)
         {
             Patient patient = Program.CreateExamplePatient();
 
 
             Patients.Add(patient.GetPatientCut());
 
-            JsonWork.SaveListOfPatientInfo(Patients);
+            JsonWork.SavePatientsInfoList(Patients);
             JsonWork.SavePatient(patient);
+            
             ReloadPatientIfoList();
+            grid.SelectedItem = grid.Items.Count - 1;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void DeletePatientButton(object sender, RoutedEventArgs e)
         {
             Patients.RemoveAll( x => x.GUID == selectedPAtient.GUID);
             JsonWork.DeletePatient(selectedPAtient.GUID);
-            JsonWork.SaveListOfPatientInfo(Patients);
+            JsonWork.SavePatientsInfoList(Patients);
             ReloadPatientIfoList();
+
+            selectedPAtient = Patient.EMPTY;
+            NewTestBtn.IsEnabled = false;
+            UpdatePatientDescr(selectedPAtient);
+        }
+
+        private void StartTestButton(object sender, RoutedEventArgs e)
+        {
+            Window wd = new TestWindow(selectedPAtient);
+            wd.Owner = this;
+
+            Hide();
+            wd.ShowDialog();
+            Show();
         }
     }
 }

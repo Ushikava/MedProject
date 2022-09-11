@@ -9,6 +9,8 @@ namespace Test
     {
         public static void CreateExampleTest()
         {
+            List<TestInfo> testInfos = new();
+
             Test t = new Test(
                 "test1",
                 "just test1",
@@ -92,8 +94,15 @@ namespace Test
                     { "D", new() { { "D isn`t ok", 3 }, { "D is ok", 1 }, { "D is perfect", 0 } } },
                 }
                 );
+
+            t.GUID = Guid.Parse("00000000-0000-0000-0000-000000000001");
+            t2.GUID = Guid.Parse("00000000-0000-0000-0000-000000000002");
+
+            testInfos.Add(t.GetTestInfo());
+            testInfos.Add(t2.GetTestInfo());
             JsonWork.SaveTest(t);
             JsonWork.SaveTest(t2);
+            JsonWork.SaveTestInfoList(testInfos);
         }
         public static void CreateExamplePatients()
         {
@@ -105,38 +114,39 @@ namespace Test
             ptInfos.Add(new Patient("Al", "Van", "Hell", new DateTime(1999, 2, 1), "муж"));
             ptInfos.Add(new Patient("Den", "0_o", "Morti", new DateTime(1995, 5, 11), "муж"));
             ptInfos.Add(new Patient("Ig", "Rock", "uwu", new DateTime(2005, 3, 23), "муж"));
-            ptlist.Add(ptInfos[0].GetPatientCut());
-            ptlist.Add(ptInfos[1].GetPatientCut());
-            ptlist.Add(ptInfos[2].GetPatientCut());
 
 
             TestResult testResult = new("test1", "ok");
-            testResult.TestGUID = Guid.NewGuid();
+            testResult.TestGUID = Guid.Parse("00000000-0000-0000-0000-000000000001");
             testResult.results = new List<TagResult>{ new( "def", 100) };
             testResult.completeTime = DateTime.Now - new TimeSpan(1, 10, 1, 0);
             ptInfos[0].TestResults.Add(testResult);
             testResult = new("test2", "mb");
-            testResult.TestGUID = Guid.NewGuid();
+            testResult.TestGUID = Guid.Parse("00000000-0000-0000-0000-000000000002");
             testResult.results = new List<TagResult> { new("def", 50 ), new("K", 50 )};
             testResult.completeTime = DateTime.Now - new TimeSpan(7, 10, 1, 0);
             ptInfos[0].TestResults.Add(testResult);
             JsonWork.SavePatient(ptInfos[0]);
 
             testResult = new("test1", "no");
-            testResult.TestGUID = Guid.NewGuid();
+            testResult.TestGUID = Guid.Parse("00000000-0000-0000-0000-000000000001");
             testResult.results = new List<TagResult> { new("def", 130 ) };
             testResult.completeTime = DateTime.Now - new TimeSpan(10, 1, 0);
             ptInfos[1].TestResults.Add(testResult);
             JsonWork.SavePatient(ptInfos[1]);
 
             testResult = new("test1", "mb");
-            testResult.TestGUID = Guid.NewGuid();
+            testResult.TestGUID = Guid.Parse("00000000-0000-0000-0000-000000000001");
             testResult.results = new List<TagResult> { new("def", 50) };
             testResult.completeTime = DateTime.Now - new TimeSpan(25 ,10, 1, 0);
             ptInfos[2].TestResults.Add(testResult);
             JsonWork.SavePatient(ptInfos[2]);
 
-            JsonWork.SaveListOfPatientInfo(ptlist);
+
+            ptlist.Add(ptInfos[0].GetPatientCut());
+            ptlist.Add(ptInfos[1].GetPatientCut());
+            ptlist.Add(ptInfos[2].GetPatientCut());
+            JsonWork.SavePatientsInfoList(ptlist);
         }
         public static Patient CreateExamplePatient()
         {
