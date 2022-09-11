@@ -58,7 +58,11 @@ namespace Test
 
         public PatientInfo GetPatientCut()
         {
-            return new PatientInfo(F_Name, L_Name, M_Name, DateTime.Now) { GUID = GUID};
+            return new PatientInfo(F_Name, L_Name, M_Name, DateTime.Now)
+            {
+                GUID = GUID,
+                Research_Date = TestResults.OrderBy(r => r.completeTime).Last().completeTime
+            };
         }
     }
 

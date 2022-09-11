@@ -12,19 +12,20 @@ namespace Test
     {
         //const string MyDocs = "/TestProgramm/Patients";
         static string MyDocs => Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\TestProgramm";
+        static FileInfo PatiensFile => new (MyDocs + @"\Patients\patients.json");
         static DirectoryInfo PatiensFolder => new (MyDocs + @"\Patients");
         static DirectoryInfo TestsFolder => new (MyDocs + @"\Tests");
 
         #region Patients
         public static void SaveListOfPatientInfo(List<PatientInfo> patients)
         {
-            if (!PatiensFolder.Exists)
+            if (!PatiensFile.Exists)
             {
-                PatiensFolder.Create();
+                PatiensFile.Create();
             }
 
             var serializer = new JsonSerializer();
-            using (StreamWriter fs = new StreamWriter(PatiensFolder + "\\patients.json"))
+            using (StreamWriter fs = new StreamWriter(PatiensFile.FullName))
             {
                 using (var jsonTextWriter = new JsonTextWriter(fs))
                 {
@@ -35,19 +36,18 @@ namespace Test
 
         public static List<PatientInfo> LoadListOfPatientInfo()
         {
-            if (!PatiensFolder.Exists)
+            if (!PatiensFile.Exists)
             {
-                PatiensFolder.Create();
+                PatiensFile.Create();
                 return new List<PatientInfo>();
             }
 
             List<PatientInfo> listOfPatients;
 
-            using (StreamReader file = File.OpenText(PatiensFolder + "\\patients.json"))
+            using (StreamReader file = File.OpenText(PatiensFile.FullName))
             {
                 JsonSerializer serializer = new JsonSerializer();
 
-                //listOfPatients
                 listOfPatients = (List<PatientInfo>)serializer.Deserialize(file, typeof(List<PatientInfo>));
 
             }
@@ -55,7 +55,7 @@ namespace Test
             return listOfPatients;
         }
 
-        public static void SavePatient(Patient patient, IEnumerable<TestResult> testResult)
+        public static void SavePatient(Patient patient)
         {
 
             if (!PatiensFolder.Exists)
@@ -68,31 +68,43 @@ namespace Test
             {
                 using (var jsonTextWriter = new JsonTextWriter(fs))
                 {
-                    serializer.Serialize(fs, new { patient, testResult});
+                    serializer.Serialize(fs, patient);
                 }
             }
         }
 
-        public static (Patient patient, List<TestResult> testResult) LoadPatient(Guid guid)
+        public static Patient LoadPatient(Guid guid)
         {
-            var tests = new List<TestResult>();
-            var patient = new { patient = Patient.EMPTY, testResult = tests};
+            var patient = Patient.EMPTY;
 
             if (!PatiensFolder.Exists)
             {
                 PatiensFolder.Create();
-                return (patient.patient, patient.testResult);
+                return Patient.EMPTY;
             }
 
 
-            using (StreamReader fs = new StreamReader(PatiensFolder + "\\" + guid.ToString() + ".json"))
+            using (StreamReader fs = new StreamReader($@"{PatiensFolder.FullName}\{guid}.json"))
             {
-                patient = JsonConvert.DeserializeAnonymousType(fs.ReadToEnd(), patient);
+                JsonSerializer serializer = new JsonSerializer();
+                patient = (Patient)serializer.Deserialize(fs, typeof(Patient));
             }
 
-            return (patient.patient, patient.testResult);
+            return patient;
         }
 
+        public static void DeletePatient(Guid guid)
+        {
+            FileInfo fileInfo = GetPatientFileInfo(guid);
+            if (fileInfo.Exists)
+                fileInfo.Delete();
+        }
+
+        public static FileInfo GetPatientFileInfo(Guid guid)
+        {
+            FileInfo fileInfo = new FileInfo($@"{PatiensFolder.FullName}\{guid}.json");
+            return fileInfo;
+        }
         #endregion
 
         #region 

@@ -22,7 +22,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Content="add" Margin="3" Click="Button_Click"/>
-                <Button Grid.Column="1" Content="remove" Margin="3"/>
+                <Button Grid.Column="1" Content="remove" Margin="3" Click="Button_Click_1"/>
             </Grid>
 
             <DataGrid  Name="grid" AutoGenerateColumns="False" Margin="3"

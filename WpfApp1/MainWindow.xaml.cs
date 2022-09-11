@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Test;
 
 namespace WpfApp1
 {
@@ -21,6 +22,7 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         public List<Test.PatientInfo> Patients { get; private set; }
+        private Patient selectedPAtient;
 
         public MainWindow()
         {
@@ -30,7 +32,7 @@ namespace WpfApp1
 
         public void ReloadPatientIfoList()
         {
-            Patients = Test.JsonWork.LoadListOfPatientInfo();
+            Patients = JsonWork.LoadListOfPatientInfo();
             grid.ItemsSource = Patients;
         }
 
@@ -38,19 +40,27 @@ namespace WpfApp1
         {
             if (e.AddedItems.Count > 0)
             {
-                Guid guid = (e.AddedItems[0] as Test.PatientInfo).GUID;
-                LoadPatientDescr(guid);
+                Guid guid = (e.AddedItems[0] as PatientInfo).GUID;
+                try
+                {
+                    selectedPAtient = JsonWork.LoadPatient(guid);
+                }
+                catch (Exception ex) 
+                {
+                    MessageBox.Show($"Ошибка при загрузке пациента [{ex.Message}]");
+                    selectedPAtient = Patient.EMPTY;
+                    selectedPAtient.GUID = guid;
+                }
+                UpdatePatientDescr(selectedPAtient);
             }
         }
 
-        private void LoadPatientDescr(Guid guid)
+        private void UpdatePatientDescr(Patient pt)
         {
-            var pt = Test.JsonWork.LoadPatient(guid);
-
-            Descr.Text = pt.patient.Description;
+            Descr.Text = pt.Description;
 
             TestResults.Text = "";
-            foreach (var test_res in pt.testResult)
+            foreach (var test_res in pt.TestResults)
             {
 
                 TestResults.Text += $"\n[{test_res.completeTime}]\n";
@@ -63,13 +73,21 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Test.Patient patient = new Test.Patient();
+            Patient patient = Test.Program.CreateExamplePatient();
 
 
             Patients.Add(patient.GetPatientCut());
 
-            Test.JsonWork.SaveListOfPatientInfo(Patients);
-            Test.JsonWork.SavePatient(patient, new List<Test.TestResult>());
+            JsonWork.SaveListOfPatientInfo(Patients);
+            JsonWork.SavePatient(patient);
+            ReloadPatientIfoList();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Patients.RemoveAll( x => x.GUID == selectedPAtient.GUID);
+            JsonWork.DeletePatient(selectedPAtient.GUID);
+            JsonWork.SaveListOfPatientInfo(Patients);
             ReloadPatientIfoList();
         }
     }
