@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Test;
+using Core;
 
 namespace TestV
 {
@@ -21,7 +21,7 @@ namespace TestV
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Test.PatientInfo> Patients { get; private set; }
+        public List<PatientInfo> Patients { get; private set; }
         private Patient selectedPAtient = Patient.EMPTY;
 
         public MainWindow()
@@ -101,7 +101,7 @@ namespace TestV
 
         private void StartTestButton(object sender, RoutedEventArgs e)
         {
-            Window wd = new TestWindow(selectedPAtient);
+            Window wd = new TestSelector(selectedPAtient);
             wd.Owner = this;
 
             Hide();

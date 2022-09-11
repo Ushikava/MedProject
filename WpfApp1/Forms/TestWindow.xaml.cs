@@ -11,28 +11,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Test;
+using Core;
 
-namespace TestV
+namespace TestV.Forms
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для TestWindow.xaml
     /// </summary>
     public partial class TestWindow : Window
     {
-        private Patient patient;
-        public TestWindow(Patient pt)
+        private Test test;
+        public TestWindow(Test test)
         {
-            patient = pt;
+            this.test = test;
             InitializeComponent();
-            Title = $"Тестирование [{patient.F_Name} {patient.L_Name}]";
-            UpdateTestList();
-        }
-
-        private void UpdateTestList()
-        {
-            Tests.ItemsSource = JsonWork.LoadTestInofList();
-            Tests.SelectedIndex = 0;
         }
     }
 }

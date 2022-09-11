@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Collections;
 
-namespace Test
+namespace Core
 {
     public class JsonWork
     {
@@ -166,13 +166,17 @@ namespace Test
                 }
             }
         }
-        public static void LoadTest(Guid guid)
+        public static Test LoadTest(Guid guid)
         {
-            using (StreamReader fs = new StreamReader($"{TestsFolder}\\{guid.ToString()}.json"))
+            Test test;
+
+            using (StreamReader fs = new StreamReader($"{TestsFolder}\\{guid}.json"))
             {
                 var serializer = new JsonSerializer();
-                var t = (Test)serializer.Deserialize(fs, typeof(Test));
+                test = (Test)serializer.Deserialize(fs, typeof(Test));
             }
+
+            return test;
         }
 
         #endregion

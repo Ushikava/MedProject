@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Test
+namespace Core
 {
     public class Program
     {

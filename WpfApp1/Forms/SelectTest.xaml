@@ -1,0 +1,26 @@
+﻿<Window x:Class="TestV.TestSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestV"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800">
+    <Grid Margin="3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <Button Content="Start" DockPanel.Dock="Right" Width="auto" Click="ButtonStart_Click"
+                Grid.Row="4" Margin="3"/>
+            <ComboBox  Name="Tests" DisplayMemberPath="Name" Margin="3" SelectedValue="" SelectionChanged="Tests_SelectionChanged"/>
+        </DockPanel>
+        <Label Name="TestNameLbl" Content="-" HorizontalAlignment="Center"
+            Grid.Row="2" Margin="3"/>
+        <TextBlock Name="TestDescrTB" Text="-" TextWrapping="Wrap"
+            Grid.Row="3" Margin="3"/>
+    </Grid>
+</Window>

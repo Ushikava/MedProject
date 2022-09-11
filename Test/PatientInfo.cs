@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Test
+namespace Core
 {
     public class PatientInfo
     {
@@ -17,7 +17,10 @@ namespace Test
 
         public static PatientInfo EMPTY => new PatientInfo();
 
-        private PatientInfo() { }
+        private PatientInfo()
+        {
+            GUID = Guid.Empty;
+        }
         public PatientInfo(string fname, string lname, string mname, DateTime rdate)
         {
             GUID = Guid.NewGuid();
@@ -41,7 +44,7 @@ namespace Test
         public List<TestResult> TestResults { get; set; } = new();
         public static Patient EMPTY => new Patient();
 
-        private Patient ()
+        private Patient()
         {
             GUID = Guid.Empty;
         }

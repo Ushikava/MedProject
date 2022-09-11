@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Test
+namespace Core
 {
     public class TestInfo
     {
@@ -28,8 +28,12 @@ namespace Test
         public List<string> AnswerTags { get; set; } = new List<string>() { DEFAULT_TAG };
         public List<Question> QuestionList { get; set; }
         public Dictionary<string, Dictionary<string, int>> Diagnoses { get; set; }
+        public static Test EMPTY => new Test();
+
         private Test()
-        { }
+        {
+            GUID = Guid.Empty;
+        }
         public Test(
             string name, string description, 
             List<string> answerTags, 
@@ -90,7 +94,7 @@ namespace Test
         }
 
         [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))] // Serialize enums by name rather than numerical value
-        public SubType Type { get { return typeToSubType[GetType()]; } }
+        public SubType Type => typeToSubType[GetType()];
 
 
         public string Text { get; set; }
@@ -108,6 +112,4 @@ namespace Test
     {
         public string Foo { get; set; } = "Foo";
     }
-
-
 }
