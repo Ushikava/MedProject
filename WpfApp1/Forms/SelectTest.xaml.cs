@@ -53,7 +53,6 @@ namespace TestV
 
         private void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
-            if 
             Hide();
         }
     }

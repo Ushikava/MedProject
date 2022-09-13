@@ -10,4 +10,17 @@
     <ProjectReference Include="..\Test\Test.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\patient_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\tests_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 </Project>

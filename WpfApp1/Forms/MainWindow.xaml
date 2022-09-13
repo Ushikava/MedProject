@@ -5,47 +5,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestV"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Главное окно" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#373737" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}" Height="35">
+                            <Grid>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Name="MenuCol" Width="45"/>
+            <ColumnDefinition Width="99*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <DockPanel Grid.RowSpan="2">
-            <Grid DockPanel.Dock="Bottom">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="add" Margin="3" Click="NewPatientButton"/>
-                <Button Grid.Column="1" Content="remove" Margin="3" Click="DeletePatientButton"/>
+        <Menu Grid.Column="0" Background="#FF467FC3">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Name="ExpandMenu" Header="ARROW" Foreground="WhiteSmoke" Margin="0" Click="ExpandMenu_Click" Cursor="Hand" HorizontalAlignment="Right" FontFamily="Arial Rounded MT Bold" FontSize="16"/>
+            <MenuItem Name="PatientsMenu" Header="Пациенты" Foreground="WhiteSmoke" Margin="0" Visibility="Hidden" Cursor="Hand" FontFamily="Arial Unicode MS" FontSize="16" FontStretch="Condensed" HorizontalAlignment="Stretch">
+                <MenuItem Header="Добавить нового пациента" Foreground="Black" Click="NewPatientButton" Cursor="Hand" />
+                <MenuItem Name="DeletePatientBtn" Header="Удалить выбранных пациентов" Foreground="Black" Click="DeletePatientButton" Cursor="Hand" IsEnabled="False"/>
+            </MenuItem>
+            <MenuItem Name="TestsMenu" Header="Тесты" Foreground="WhiteSmoke" Margin="0" Visibility="Hidden" Cursor="Hand" FontFamily="Arial Unicode MS" FontSize="16" FontStretch="Condensed" HorizontalAlignment="Stretch">
+                <MenuItem Name="NewTestBtn" Header="Новый тест" Foreground="Black" Click="StartTestButton" Cursor="Hand" IsEnabled="False"/>
+            </MenuItem>
+        </Menu>
+        <Grid Background="#2D2D30" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="49*" MinWidth="50"/>
+                <ColumnDefinition Width="2" MinWidth="1"/>
+                <ColumnDefinition Width="50*" MinWidth="50"/>
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.RowSpan="2">
+                <!--<Grid DockPanel.Dock="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Content="Добавить пациента" Margin="3" Click="NewPatientButton" Background="LightGray" Foreground="Black" FontFamily="Microsoft Sans Serif"/>
+                    <Button Grid.Column="1" Content="Удалить" Margin="3" Click="DeletePatientButton" Background="LightGray" Foreground="Black"/>
+                </Grid>-->
+
+                <DataGrid  Name="grid" AutoGenerateColumns="False" Margin="3"
+                  SelectionChanged="grid_SelectionChanged" Background="WHite" Grid.Column="0" AlternatingRowBackground="Beige" BorderThickness="0"
+                  FontFamily="Microsoft Sans Serif" KeyDown="MenuItem_KeyDown" CanUserDeleteRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="Имя" Binding="{Binding Path=F_Name}"/>
+                        <DataGridTextColumn Width="*" Header="Фамилия" Binding="{Binding Path=L_Name}"/>
+                        <DataGridTextColumn Width="*" Header="Отчество" Binding="{Binding Path=M_Name}"/>
+                        <DataGridTextColumn Width="*" Header="Дата последнего теста" Binding="{Binding Path=Research_Date}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+            <GridSplitter Name="GridSplitter" Background="#FF292A30" Foreground="{x:Null}" Grid.Column="1" HorizontalAlignment="Stretch"/>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--<ScrollViewer Grid.Column="2">-->
+                <TextBlock Margin="3" Text="-" Name="Descr" TextWrapping="Wrap" Background="White" Grid.Column="2"/>
+                <!--</ScrollViewer>-->
+
+                <DockPanel Grid.Column="2" Grid.Row="2">
+                    <!--<Button Content="Новый тест" DockPanel.Dock="Bottom" Margin="3" Click="StartTestButton" IsEnabled="False" Name="NewTestBtn" Background="White" Foreground="Black" FontFamily="Microsoft Sans Serif" Cursor="Hand"/> -->
+                    <!--<ScrollViewer>-->
+                    <TextBlock Margin="3" Text="-" Name="TestResults" Background="White"/>
+                    <!--</ScrollViewer>-->
+                </DockPanel>
             </Grid>
-
-            <DataGrid  Name="grid" AutoGenerateColumns="False" Margin="3"
-                  SelectionChanged="grid_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Header="f" Binding="{Binding Path=F_Name}"/>
-                    <DataGridTextColumn Width="*" Header="m" Binding="{Binding Path=M_Name}"/>
-                    <DataGridTextColumn Width="*" Header="l" Binding="{Binding Path=L_Name}"/>
-                    <DataGridTextColumn Width="*" Header="d" Binding="{Binding Path=Research_Date}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </DockPanel>
-
-        <ScrollViewer Grid.Column="2">
-            <TextBlock Margin="3" Text="-" Name="Descr" TextWrapping="Wrap"/>
-        </ScrollViewer>
-
-        <DockPanel Grid.Column="2" Grid.Row="2">
-            <Button Content="New Test" DockPanel.Dock="Bottom" Margin="3" Click="StartTestButton" IsEnabled="False" Name="NewTestBtn"/>
-            
-            <ScrollViewer>
-                <TextBlock Margin="3" Text="-" Name="TestResults"/>
-            </ScrollViewer>
-        </DockPanel>
+        </Grid>
     </Grid>
 </Window>
