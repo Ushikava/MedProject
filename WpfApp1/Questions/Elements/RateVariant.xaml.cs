@@ -47,7 +47,7 @@ namespace TestV.Questions.Elements
                         break;
                     case Key.Subtract:
                     case Key.OemMinus:
-                        Value = Math.Max(minValue, Value-1);
+                        Value = Math.Max(minValue, Value - 1);
                         break;
                 }
             };

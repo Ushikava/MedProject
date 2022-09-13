@@ -56,15 +56,22 @@ namespace TestV
 
         private void CalculateResultat()
         {
+            var correctCheck = new List<bool>();
+            _test.QuestionList.ForEach((x) => correctCheck.Add(x.AnswerIsCorrect()));
+
             for (int i = 0; i < _test.QuestionList.Count; i++)
             {
                 var q = _test.QuestionList[i].GetAnswers();
 
                 System.Diagnostics.Debug.Write($"quest [{_test.QuestionList[i].Text}]");
                 foreach (var a in q)
-                    System.Diagnostics.Debug.Write($"[{a.Key}][{a.Value}]");
+                    System.Diagnostics.Debug.Write($"[{a.Key}] [{a.Value}]");
                 System.Diagnostics.Debug.WriteLine($"_");
             }
+
+            foreach (var a in correctCheck)
+                System.Diagnostics.Debug.Write($"[{a}]-");
+            System.Diagnostics.Debug.WriteLine($"_");
         }
 
         private void Button_Click_prev(object sender, RoutedEventArgs e)
@@ -80,6 +87,7 @@ namespace TestV
             {
                 MessageBox.Show("Это последний вопрос");
                 CalculateResultat();
+
                 selectedQuestion -= 1;
             }
             SelectQuest(selectedQuestion);

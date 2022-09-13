@@ -106,6 +106,9 @@ namespace Core
         [JsonIgnore]
         public List<int> Answers { get; set; }
 
+        public virtual bool AnswerIsCorrect() {
+            return Answers.Any((v) => v > 0);
+        }
         public void ClearAnswers()
         {
             Answers = new List<int>();
@@ -139,10 +142,21 @@ namespace Core
         public int MaxRate { get; set; }
         public int MinRate { get; set; }
         public bool UnicValues { get; set; }
+        public override bool AnswerIsCorrect()
+        {
+            if(UnicValues)
+                return Answers.Distinct().Count() == Answers.Count;
+            return Answers.Any((v) => v > 0);
+        }
 
     }
     public class QuestionTest : Question
     {
         public string Foo { get; set; } = "Foo";
+        public override bool AnswerIsCorrect()
+        {
+            return false;
+        }
+
     }
 }
