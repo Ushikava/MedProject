@@ -99,7 +99,7 @@ namespace Core
 
         public string Text { get; set; }
         public List<string> Variants { get; set; }
-        public List<string> VariantsTag { get; set; } = new List<string>() { Test.DEFAULT_TAG };
+        public List<string> VariantsTag { get; set; } = new List<string>();
 
 
 
@@ -111,6 +111,27 @@ namespace Core
             Answers = new List<int>();
             foreach (var _ in Variants)
                 Answers.Add(0);
+        }
+        public Dictionary<string, int> GetAnswers()
+        {
+            var res = new Dictionary<string, int>();
+
+            if (VariantsTag.Count > 1)
+                for (int i = 0; i < VariantsTag.Count; i++)
+                {
+                    if (res.Keys.Contains(VariantsTag[i]))
+                        res[VariantsTag[i]] += Answers[i];
+                    else
+                        res.Add(VariantsTag[i], Answers[i]);
+                }
+            else
+            {
+                res.Add(Test.DEFAULT_TAG, 0);
+                for (int i = 0; i < Variants.Count; i++)
+                    res[Test.DEFAULT_TAG] += Answers[i];
+            }
+
+            return res;
         }
     }
     public class QuestionRateAnswer : Question

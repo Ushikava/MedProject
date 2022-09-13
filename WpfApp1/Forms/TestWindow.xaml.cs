@@ -54,6 +54,19 @@ namespace TestV
             MainGrid.Children.Add(q);
         }
 
+        private void CalculateResultat()
+        {
+            for (int i = 0; i < _test.QuestionList.Count; i++)
+            {
+                var q = _test.QuestionList[i].GetAnswers();
+
+                System.Diagnostics.Debug.Write($"quest [{_test.QuestionList[i].Text}]");
+                foreach (var a in q)
+                    System.Diagnostics.Debug.Write($"[{a.Key}][{a.Value}]");
+                System.Diagnostics.Debug.WriteLine($"_");
+            }
+        }
+
         private void Button_Click_prev(object sender, RoutedEventArgs e)
         {
             selectedQuestion = Math.Max(0, selectedQuestion - 1);
@@ -62,8 +75,15 @@ namespace TestV
 
         private void Button_Click_next(object sender, RoutedEventArgs e)
         {
-            selectedQuestion = Math.Min(_test.QuestionList.Count - 1, selectedQuestion + 1);
+            selectedQuestion = Math.Min(_test.QuestionList.Count, selectedQuestion + 1);
+            if (selectedQuestion == _test.QuestionList.Count)
+            {
+                MessageBox.Show("Это последний вопрос");
+                CalculateResultat();
+                selectedQuestion -= 1;
+            }
             SelectQuest(selectedQuestion);
         }
+
     }
 }

@@ -75,9 +75,6 @@ namespace TestV.Questions
         private void AnswerReceive(int index, int Value)
         {
             _quest.Answers[index] = Value;
-            foreach (var a in _quest.Answers)
-                System.Diagnostics.Debug.Write($"[{a}]");
-            System.Diagnostics.Debug.WriteLine($"_");
         }
     }
 }
