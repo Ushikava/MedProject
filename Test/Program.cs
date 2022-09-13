@@ -20,8 +20,8 @@ namespace Core
                     new QuestionRateAnswer()
                     {
                         Text = "quest1",
-                        Answers = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
-                        AnswerTags = new() { Test.DEFAULT_TAG },
+                        Variants = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
+                        VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
                         UnicValues = true
@@ -29,14 +29,14 @@ namespace Core
                     new Question()
                     {
                         Text = "quest2",
-                        Answers = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
-                        AnswerTags = new() { Test.DEFAULT_TAG }
+                        Variants = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
+                        VariantsTag = new() { Test.DEFAULT_TAG }
                     },
                     new QuestionTest()
                     {
                         Text = "quest3",
-                        Answers = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
-                        AnswerTags = new() { Test.DEFAULT_TAG },
+                        Variants = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
+                        VariantsTag = new() { Test.DEFAULT_TAG },
                     }
                 },
                 new()
@@ -61,8 +61,8 @@ namespace Core
                     new QuestionRateAnswer()
                     {
                         Text = "quest1",
-                        Answers = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
-                        AnswerTags = new() { "K", "V", "A", "D" },
+                        Variants = new() { "ans 1", "ans 2", "ans 3", "ans 4" },
+                        VariantsTag = new() { "K", "V", "A", "D" },
                         MaxRate = 4,
                         MinRate = 0,
                         UnicValues = false
@@ -70,8 +70,8 @@ namespace Core
                     new QuestionRateAnswer()
                     {
                         Text = "quest2",
-                        Answers = new() { "ans 1", "ans 4", "ans 3", "ans 2" },
-                        AnswerTags = new() { "K", "D", "A", "V" },
+                        Variants = new() { "ans 1", "ans 4", "ans 3", "ans 2" },
+                        VariantsTag = new() { "K", "D", "A", "V" },
                         MaxRate = 4,
                         MinRate = 0,
                         UnicValues = true

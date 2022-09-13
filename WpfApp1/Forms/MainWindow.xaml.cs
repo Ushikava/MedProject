@@ -103,10 +103,11 @@ namespace TestV
         {
             Window wd = new TestSelector(selectedPAtient);
             wd.Owner = this;
+            wd.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
             Hide();
-            wd.ShowDialog();
-            Show();
+            wd.Show();
+            wd.Closed += (s, e) => Show();
         }
     }
 }

@@ -13,14 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TestV.questions
+namespace TestV.Questions.Elements
 {
     /// <summary>
-    /// Логика взаимодействия для UserControl1.xaml
+    /// Логика взаимодействия для SelectVariant.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class SelectVariant : UserControl
     {
-        public UserControl1()
+        public int Value => checkBox.IsChecked.Value ? 1 : 0;
+        public SelectVariant()
         {
             InitializeComponent();
         }

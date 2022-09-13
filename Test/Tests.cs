@@ -98,15 +98,27 @@ namespace Core
 
 
         public string Text { get; set; }
-        public List<string> Answers { get; set; }
-        public List<string> AnswerTags { get; set; } = new List<string>() { Test.DEFAULT_TAG };
+        public List<string> Variants { get; set; }
+        public List<string> VariantsTag { get; set; } = new List<string>() { Test.DEFAULT_TAG };
 
+
+
+        [JsonIgnore]
+        public List<int> Answers { get; set; }
+
+        public void ClearAnswers()
+        {
+            Answers = new List<int>();
+            foreach (var _ in Variants)
+                Answers.Add(0);
+        }
     }
     public class QuestionRateAnswer : Question
     {
         public int MaxRate { get; set; }
         public int MinRate { get; set; }
         public bool UnicValues { get; set; }
+
     }
     public class QuestionTest : Question
     {

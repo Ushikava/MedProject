@@ -176,6 +176,11 @@ namespace Core
                 test = (Test)serializer.Deserialize(fs, typeof(Test));
             }
 
+            for(int i = 0; i < test.QuestionList.Count; i++)
+            {
+                test.QuestionList[i].ClearAnswers();
+            }
+
             return test;
         }
 

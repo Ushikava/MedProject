@@ -53,8 +53,16 @@ namespace TestV
 
         private void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
-            if 
-            Hide();
+            if (test.GUID != Guid.Empty)
+            {
+                Hide();
+                TestWindow tw = new(test);
+                tw.Owner = this;
+                tw.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+                tw.Show();
+                tw.Closed += (s, e) => Show();
+            }
         }
     }
 }
