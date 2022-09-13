@@ -22,30 +22,62 @@ namespace TestV.Questions
     /// </summary>
     public partial class QuestoinUI : UserControl
     {
-        public QuestoinUI()
-        {
-            InitializeComponent();
-        }
+        public List<int> Answers => _quest.Answers;
+
+        private Question _quest;
         public QuestoinUI(Question quest)
         {
+            _quest = quest;
             InitializeComponent();
             QuestionTextLBL.Text = quest.Text;
 
             switch (quest.Type)
             {
                 case SubType.Question:
+                    LoadBaseQuestion(quest);
+                    break;
                 case SubType.QuestionRateAnswer:
+                    LoadRateQuestion(quest as QuestionRateAnswer);
+                    break;
                 case SubType.QuestionTest:
+                    break;
                 default:
                     break;
             }
         }
-        private void LoadQuestion(Question quest)
+        private void LoadRateQuestion(QuestionRateAnswer quest)
         {
-            foreach (var v in quest.Variants)
+            QuestionPanel.Children.Clear();
+            for (int i = 0; i < quest.Variants.Count; i++)
             {
+                var v = quest.Variants[i];
+                var q = new Elements.RateVariant(i, quest);
+                q.Value = quest.Answers[i];
 
+                QuestionPanel.Children.Add(q);
+                q.ValueChangedEvent += AnswerReceive;
             }
+        }
+        private void LoadBaseQuestion(Question quest)
+        {
+            QuestionPanel.Children.Clear();
+            for (int i = 0; i < quest.Variants.Count; i++)
+            {
+                var v = quest.Variants[i];
+                var q = new Elements.SelectVariant(i, quest);
+                q.Value = quest.Answers[i];
+
+                QuestionPanel.Children.Add(q);
+                q.ValueChangedEvent += AnswerReceive;
+            }
+        }
+
+        private void AnswerReceive(int index, int Value)
+        {
+            _quest.Answers[index] = Value;
+            foreach (var a in _quest.Answers)
+                System.Diagnostics.Debug.Write($"[{a}]");
+            System.Diagnostics.Debug.WriteLine($"_");
         }
     }
 }

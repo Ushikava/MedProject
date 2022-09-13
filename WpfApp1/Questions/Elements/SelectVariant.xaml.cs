@@ -18,12 +18,21 @@ namespace TestV.Questions.Elements
     /// <summary>
     /// Логика взаимодействия для SelectVariant.xaml
     /// </summary>
-    public partial class SelectVariant : UserControl
+    public partial class SelectVariant : UserControl, Variant
     {
-        public int Value => checkBox.IsChecked.Value ? 1 : 0;
-        public SelectVariant()
+        public event ValueChangedHandler ValueChangedEvent;
+        public int Value
+        {
+            get => checkBox.IsChecked.Value ? 1 : 0;
+            set => checkBox.IsChecked = value != 0;
+        }
+
+        public SelectVariant(int index, Core.Question question)
         {
             InitializeComponent();
+            checkBox.Content = question.Variants[index];
+            checkBox.Click += (s, e) => ValueChangedEvent?.Invoke(index, Value);
         }
+        
     }
 }

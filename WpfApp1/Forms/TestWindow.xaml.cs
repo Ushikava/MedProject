@@ -21,8 +21,8 @@ namespace TestV
     /// </summary>
     public partial class TestWindow : Window
     {
-        private Test test;
-        private int selectedQustion = 0;
+        private Test _test;
+        private int selectedQuestion = 0;
 
         private QuestoinUI prevQuestion;
         private QuestoinUI curQuestion;
@@ -36,16 +36,16 @@ namespace TestV
                 Close();
             }
 
-            this.test = test;
+            _test = test;
             InitializeComponent();
-            SelectQuest(selectedQustion);
+            SelectQuest(selectedQuestion);
         }
 
         private void SelectQuest(int questionIndex)
         {
             prevQuestion = curQuestion;
 
-            var q = new QuestoinUI(test.QuestionList[questionIndex]);
+            var q = new QuestoinUI(_test.QuestionList[questionIndex]);
             //q.SetValue(Grid.RowProperty, 1);
             curQuestion = q;
 
@@ -56,14 +56,14 @@ namespace TestV
 
         private void Button_Click_prev(object sender, RoutedEventArgs e)
         {
-            selectedQustion = Math.Max(0, selectedQustion - 1);
-            SelectQuest(selectedQustion);
+            selectedQuestion = Math.Max(0, selectedQuestion - 1);
+            SelectQuest(selectedQuestion);
         }
 
         private void Button_Click_next(object sender, RoutedEventArgs e)
         {
-            selectedQustion = Math.Min(test.QuestionList.Count - 1, selectedQustion + 1);
-            SelectQuest(selectedQustion);
+            selectedQuestion = Math.Min(_test.QuestionList.Count - 1, selectedQuestion + 1);
+            SelectQuest(selectedQuestion);
         }
     }
 }
