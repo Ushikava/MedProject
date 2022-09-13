@@ -23,6 +23,8 @@ namespace TestV.Questions.Elements
     public partial class RateVariant : UserControl, Variant
     {
         public event ValueChangedHandler ValueChangedEvent;
+        private int maxValue = int.MaxValue;
+        private int minValue = 0;
         public int Value
         {
             get => int.Parse(textBox.Text);
@@ -32,7 +34,24 @@ namespace TestV.Questions.Elements
         public RateVariant(int index, Core.QuestionRateAnswer question)
         {
             InitializeComponent();
+            maxValue = question.MaxRate;
+            minValue = question.MinRate;
             textBlock.Text = question.Variants[index];
+            textBox.KeyDown += (s, e) =>
+            {
+                switch (e.Key)
+                {
+                    case Key.Add:
+                    case Key.OemPlus:
+                        Value += 1;
+                        break;
+                    case Key.Subtract:
+                    case Key.OemMinus:
+                        Value = Math.Max(minValue, Value-1);
+                        break;
+                }
+            };
+
             textBox.TextChanged += TextBox_TextChanged;
             textBox.TextChanged += (s, e) => ValueChangedEvent?.Invoke(index, Value);
         }
@@ -46,9 +65,14 @@ namespace TestV.Questions.Elements
             if (str.Length > 1 && str.StartsWith('0'))
                 str = str.Substring(1);
             if (str == string.Empty)
-                str = "0";
+                str = minValue.ToString();
 
-            textBox.Text = str;
+            var val = int.Parse(str);
+
+            val = Math.Min(val, maxValue);
+            val = Math.Max(val, minValue);
+
+            textBox.Text = val.ToString();
             textBox.CaretIndex = c;
         }
     }
