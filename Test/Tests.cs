@@ -153,6 +153,7 @@ namespace Core
 
 
         public string Text { get; set; }
+        public List<string> Questions { get; set; }
         public List<string> Variants { get; set; }
         public List<string> VariantsTag { get; set; } = new List<string>();
 
@@ -162,13 +163,13 @@ namespace Core
         public List<int> Answers { get; set; }
 
         public virtual bool AnswerIsCorrect() {
-            return Answers.Any((v) => v > 0);
+            return Answers.Any((v) => v >= 0);
         }
         public void ClearAnswers()
         {
             Answers = new List<int>();
             foreach (var _ in Variants)
-                Answers.Add(0);
+                Answers.Add(-1);
         }
         public Dictionary<string, int> GetAnswers()
         {
@@ -201,7 +202,7 @@ namespace Core
         {
             if(UnicValues)
                 return Answers.Distinct().Count() == Answers.Count;
-            return Answers.Any((v) => v > 0);
+            return Answers.Any((v) => v >= 0);
         }
 
     }

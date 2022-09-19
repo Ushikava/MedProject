@@ -48,7 +48,7 @@ namespace TestV.Questions
         private void LoadRateQuestion(QuestionRateAnswer quest)
         {
             QuestionPanel.Children.Clear();
-            for (int i = 0; i < quest.Variants.Count; i++)
+            for (int i = 0; i < quest.Questions.Count; i++)
             {
                 var v = quest.Variants[i];
                 var q = new Elements.RateVariant(i, quest);

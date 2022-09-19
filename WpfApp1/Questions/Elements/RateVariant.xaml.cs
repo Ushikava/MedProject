@@ -37,14 +37,21 @@ namespace TestV.Questions.Elements
             InitializeComponent();
             maxValue = question.MaxRate;
             minValue = question.MinRate;
-            textBlock.Text = question.Variants[index];
+            textBlock.Text = question.Questions[index];
 
-            foreach (var cont in QuestionPanel.Children)
+            int row_ind = 0;
+            foreach (var cont in question.Variants)
             {
-                if (cont is RadioButton)
-                {
-                    (cont as RadioButton).Checked += (s, e) => ValueChangedEvent?.Invoke(index, Value);
-                }
+                RowDefinition row = new RowDefinition();
+                MainGrid.RowDefinitions.Add(row);
+                RadioButton new_radio = new RadioButton();
+                new_radio.Content = cont;
+                new_radio.Checked += Answer_changed;
+                new_radio.Checked += (s, e) => ValueChangedEvent?.Invoke(index, Value);
+                new_radio.Name = "answer_" + row_ind;
+                Grid.SetRow(new_radio, row_ind++);
+
+                MainGrid.Children.Add(new_radio);
             }
         }
 
