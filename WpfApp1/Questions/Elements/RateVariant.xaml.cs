@@ -25,10 +25,11 @@ namespace TestV.Questions.Elements
         public event ValueChangedHandler ValueChangedEvent;
         private int maxValue = int.MaxValue;
         private int minValue = 0;
+        private int curValue = 0;
         public int Value
         {
-            get => int.Parse(textBox.Text);
-            set => textBox.Text = value.ToString();
+            get => curValue;
+            set => curValue = value;
         }
 
         public RateVariant(int index, Core.QuestionRateAnswer question)
@@ -37,43 +38,14 @@ namespace TestV.Questions.Elements
             maxValue = question.MaxRate;
             minValue = question.MinRate;
             textBlock.Text = question.Variants[index];
-            textBox.KeyDown += (s, e) =>
+
+            foreach (var cont in QuestionPanel.Children)
             {
-                switch (e.Key)
+                if (cont is RadioButton)
                 {
-                    case Key.Add:
-                    case Key.OemPlus:
-                        Value += 1;
-                        break;
-                    case Key.Subtract:
-                    case Key.OemMinus:
-                        Value = Math.Max(minValue, Value - 1);
-                        break;
+                    (cont as RadioButton).Checked += (s, e) => ValueChangedEvent?.Invoke(index, Value);
                 }
-            };
-
-            textBox.TextChanged += TextBox_TextChanged;
-            textBox.TextChanged += (s, e) => ValueChangedEvent?.Invoke(index, Value);
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var c = textBox.CaretIndex;
-
-            string str = Regex.Replace(textBox.Text, @"\D*", "");
-
-            if (str.Length > 1 && str.StartsWith('0'))
-                str = str.Substring(1);
-            if (str == string.Empty)
-                str = minValue.ToString();
-
-            var val = int.Parse(str);
-
-            val = Math.Min(val, maxValue);
-            val = Math.Max(val, minValue);
-
-            textBox.Text = val.ToString();
-            textBox.CaretIndex = c;
+            }
         }
 
         private void textBox_GotFocus(object sender, RoutedEventArgs e)
@@ -96,6 +68,12 @@ namespace TestV.Questions.Elements
                     tb.Focus();
                 }
             }
+        }
+
+        private void Answer_changed(object sender, RoutedEventArgs e)
+        {
+            string str = (sender as RadioButton).Name.ToString().Split('_').Last();
+            curValue = int.Parse(str);
         }
     }
 }

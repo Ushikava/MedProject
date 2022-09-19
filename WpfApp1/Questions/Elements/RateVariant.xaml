@@ -10,7 +10,11 @@
     <Grid>
         <StackPanel Name="QuestionPanel">
             <TextBlock Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-            <TextBox Name="textBox" GotKeyboardFocus="textBox_GotFocus" PreviewMouseLeftButtonDown="textBox_PreviewMouseLeftButtonDown"/>
+            <RadioButton Name="Answer_0" Content="Нисколько" Checked="Answer_changed"/>
+            <RadioButton Name="Answer_1" Content="Немного" Checked="Answer_changed"/>
+            <RadioButton Name="Answer_2" Content="Умеренно" Checked="Answer_changed"/>
+            <RadioButton Name="Answer_3" Content="Сильно" Checked="Answer_changed"/>
+            <RadioButton Name="Answer_4" Content="Крайне сильно" Checked="Answer_changed"/>
         </StackPanel>
     </Grid>
 </UserControl>
