@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel Name="QuestionPanel">
             <TextBlock Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-            <TextBox Name="textBox"/>
+            <TextBox Name="textBox" GotKeyboardFocus="textBox_GotFocus" PreviewMouseLeftButtonDown="textBox_PreviewMouseLeftButtonDown"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -110,7 +110,22 @@ namespace TestV
             var btn = MessageBox.Show("Завершить тестирование?", "", MessageBoxButton.YesNo);
 
             if (btn == MessageBoxResult.No)
+            {
                 e.Cancel = true;
+            }
+            else{
+                var wrongAns = _test.CheckAnswerisCorrectInput();
+                if (wrongAns.Count > 0)
+                {
+                    string msg = "Неверно отмечены вопросы: ";
+
+                    foreach (var i in wrongAns)
+                        msg += $"{i + 1}, ";
+
+                    MessageBox.Show(msg);
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

@@ -59,10 +59,20 @@ namespace TestV
                 TestWindow tw = new(test);
                 tw.Owner = this;
                 tw.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-
                 tw.Show();
-                tw.Closed += (s, e) => Show();
+                tw.Closed += TestWindowClosed;
             }
+        }
+
+        private void TestWindowClosed(object sender, EventArgs e)
+        {
+            foreach (var p in test.CalculateResult())
+            {
+                ResultTextBlock.Text += $"{test.Name} [{p.Key}: {p.Value}]\n";
+            }
+            ResultTextBlock.Text += $"{test.CalculateDiagnose()}\n";
+            test = JsonWork.LoadTest(test.GUID);
+            Show();
         }
     }
 }

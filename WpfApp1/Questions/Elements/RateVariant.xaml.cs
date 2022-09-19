@@ -75,5 +75,27 @@ namespace TestV.Questions.Elements
             textBox.Text = val.ToString();
             textBox.CaretIndex = c;
         }
+
+        private void textBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null)
+            {
+                tb.SelectAll();
+            }
+        }
+
+        private void textBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null)
+            {
+                if (!tb.IsKeyboardFocusWithin)
+                {
+                    e.Handled = true;
+                    tb.Focus();
+                }
+            }
+        }
     }
 }

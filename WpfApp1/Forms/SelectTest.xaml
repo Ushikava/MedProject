@@ -12,6 +12,7 @@
             <RowDefinition Height="5"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <DockPanel>
             <Button Content="Start" DockPanel.Dock="Right" Width="auto" Click="ButtonStart_Click"
@@ -22,5 +23,7 @@
             Grid.Row="2" Margin="3"/>
         <TextBlock Name="TestDescrTB" Text="-" TextWrapping="Wrap"
             Grid.Row="3" Margin="3"/>
+        <TextBlock Name="ResultTextBlock" Text="-" TextWrapping="Wrap"
+            Grid.Row="4" Margin="3"/>
     </Grid>
 </Window>

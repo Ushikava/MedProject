@@ -52,6 +52,61 @@ namespace Core
         {
             return new TestInfo(GUID, Name);
         }
+
+        public Dictionary<string, int> CalculateResult()
+        {
+            var sum = new Dictionary<string, int>();
+            for (int i = 0; i < QuestionList.Count; i++)
+            {
+                var q = QuestionList[i].GetAnswers();
+
+                foreach (var a in q)
+                {
+
+                    if (sum.Keys.Contains(a.Key))
+                        sum[a.Key] += a.Value;
+                    else
+                        sum.Add(a.Key, a.Value);
+                }
+            }
+
+            return sum;
+        }
+
+        public string CalculateDiagnose()
+        {
+            var sum = CalculateResult();
+            string diagnose = string.Empty;
+            
+            foreach(var tag in Diagnoses)
+            {
+                foreach(var d in tag.Value)
+                {
+
+                    if (sum.ContainsKey(tag.Key) && sum[tag.Key] >= d.Value)
+                    {
+                        diagnose += d.Key + ", ";
+                        break;
+                    }
+                }
+            }
+
+            return diagnose;
+        }
+
+        public List<int> CheckAnswerisCorrectInput()
+        {
+
+            var correctCheck = new List<int>();
+
+            for (int i = 0; i < QuestionList.Count; i++)
+            {
+                if (QuestionList[i].AnswerIsCorrect() == false)
+                    correctCheck.Add(i);
+            }
+
+            return correctCheck;
+        }
     }
     public struct TagResult
     {
