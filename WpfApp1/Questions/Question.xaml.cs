@@ -74,6 +74,8 @@ namespace TestV.Questions
 
         private void AnswerReceive(int index, int Value)
         {
+            _quest.Answers.ForEach(x => x = -1);
+
             _quest.Answers[index] = Value;
         }
     }

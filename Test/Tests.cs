@@ -178,16 +178,26 @@ namespace Core
             if (VariantsTag.Count > 1)
                 for (int i = 0; i < VariantsTag.Count; i++)
                 {
-                    if (res.Keys.Contains(VariantsTag[i]))
-                        res[VariantsTag[i]] += Answers[i];
-                    else
-                        res.Add(VariantsTag[i], Answers[i]);
+                    if (Answers[i] > 0)
+                    {
+                        if (res.Keys.Contains(VariantsTag[i]))
+                            res[VariantsTag[i]] += Answers[i];
+                        else
+                            res.Add(VariantsTag[i], Answers[i]);
+                    }
                 }
             else
             {
+
                 res.Add(Test.DEFAULT_TAG, 0);
                 for (int i = 0; i < Variants.Count; i++)
-                    res[Test.DEFAULT_TAG] += Answers[i];
+                {
+                    if (Answers[i] > 0)
+                    {
+                        res[Test.DEFAULT_TAG] += Answers[i];
+
+                    }
+                }
             }
 
             return res;

@@ -49,6 +49,7 @@ namespace TestV.Questions.Elements
                 new_radio.Checked += Answer_changed;
                 new_radio.Checked += (s, e) => ValueChangedEvent?.Invoke(index, Value);
                 new_radio.Name = "answer_" + row_ind;
+                new_radio.IsChecked = question.Answers[index] >= 0 && row_ind == question.Answers[index];
                 Grid.SetRow(new_radio, row_ind++);
 
                 MainGrid.Children.Add(new_radio);
