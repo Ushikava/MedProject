@@ -55,7 +55,7 @@ namespace TestV
             CurrentQuestLBL.Content = (questionIndex + 1).ToString();
         }
 
-        private void CalculateResultat()
+        private Dictionary<string, int> CalculateResultat()
         {
             var correctCheck = new List<bool>();
             _test.QuestionList.ForEach((x) => correctCheck.Add(x.AnswerIsCorrect()));
@@ -83,6 +83,7 @@ namespace TestV
             foreach (var a in sum)
                 System.Diagnostics.Debug.Write($"[{a.Key}] [{a.Value}]");
             System.Diagnostics.Debug.WriteLine($"_");
+            return sum;
         }
 
         private void Button_Click_prev(object sender, RoutedEventArgs e)
@@ -94,15 +95,22 @@ namespace TestV
         private void Button_Click_next(object sender, RoutedEventArgs e)
         {
             selectedQuestion = Math.Min(_test.QuestionList.Count, selectedQuestion + 1);
+
             if (selectedQuestion == _test.QuestionList.Count)
             {
-                MessageBox.Show("Это последний вопрос");
-                CalculateResultat();
-
                 selectedQuestion -= 1;
+
+                Close();
             }
             SelectQuest(selectedQuestion);
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var btn = MessageBox.Show("Завершить тестирование?", "", MessageBoxButton.YesNo);
+
+            if (btn == MessageBoxResult.No)
+                e.Cancel = true;
+        }
     }
 }

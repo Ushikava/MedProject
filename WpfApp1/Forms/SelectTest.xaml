@@ -8,7 +8,7 @@
         Title="Window1" Height="450" Width="800">
     <Grid Margin="3">
         <Grid.RowDefinitions>
-            <RowDefinition Height="24"/>
+            <RowDefinition Height="32"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>

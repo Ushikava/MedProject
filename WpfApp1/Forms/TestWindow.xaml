@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TestV"
         xmlns:q="clr-namespace:TestV.Questions"
         mc:Ignorable="d"
+        Closing="Window_Closing"
         Title="TestWindow" Height="450" Width="800">
     <Grid Margin="3" Name="MainGrid">
         <Grid.RowDefinitions>
