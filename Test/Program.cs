@@ -19,318 +19,318 @@ namespace Core
                 {
                     new QuestionRateAnswer()
                     {
-                        Text = "Затруднение на вдохе, нехватка воздуха или учащенное дыхание\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Затруднение на вдохе, нехватка воздуха или учащенное дыхание\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Ощущение удушья или комка в горле\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Ощущение удушья или комка в горле\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Сердце скачет, колотится, готово выскочить из груди\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Сердце скачет, колотится, готово выскочить из груди\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Загрудинная боль, неприятное чувство сдавления в груди\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Загрудинная боль, неприятное чувство сдавления в груди\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Профузная потливость (пот градом)\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Профузная потливость (пот градом)\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Слабость, приступы дурноты, головокружения\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Слабость, приступы дурноты, головокружения\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "\"Ватные\", \"не свои\" ноги\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "\"Ватные\", \"не свои\" ноги\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Ощущение неустойчивости или потери равновесия\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Ощущение неустойчивости или потери равновесия\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Тошнота или неприятные ощущения в животе\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Тошнота или неприятные ощущения в животе\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Ощущение того, что все окружающее становится странным, нереальным, туманным или отстраненнымОщущение того, что все окружающее становится странным, нереальным, туманным или отстраненным\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Ощущение того, что все окружающее становится странным, нереальным, туманным или отстраненнымОщущение того, что все окружающее становится странным, нереальным, туманным или отстраненным\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Ощущение, что все плывет, \"нахожусь вне тела\"\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Ощущение, что все плывет, \"нахожусь вне тела\"\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Покалывание или онемение в разных частях тела\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Покалывание или онемение в разных частях тела\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Приливы жара или озноба\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Приливы жара или озноба\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Дрожь (тремор)\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Дрожь (тремор)\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Страх смерти или того, что сейчас может произойти что-то ужасное\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Страх смерти или того, что сейчас может произойти что-то ужасное\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Страх сойти с ума или потери самообладания\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Страх сойти с ума или потери самообладания\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Внезапные приступы тревоги, сопровождающиеся тремя или более из вышеперечисленных признаков, возникающие непосредственно перед и при попадании в ситуацию, которая, по Вашему опыту, может вызвать приступ\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Внезапные приступы тревоги, сопровождающиеся тремя или более из вышеперечисленных признаков, возникающие непосредственно перед и при попадании в ситуацию, которая, по Вашему опыту, может вызвать приступ\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Внезапные неожиданные приступы тревоги, сопровождающиеся тремя или более из выше перечисленных признаков, возникающие по незначительным поводам или без повода (т.е., когда Вы НЕ находитесь в ситуации, которая, по Вашему опыту, может вызвать приступ)\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Внезапные неожиданные приступы тревоги, сопровождающиеся тремя или более из выше перечисленных признаков, возникающие по незначительным поводам или без повода (т.е., когда Вы НЕ находитесь в ситуации, которая, по Вашему опыту, может вызвать приступ)\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Внезапные неожиданные приступы, сопровождающиеся только одним или двумя из вышеперечисленных признаков, возникающие по незначительным поводам или без повода (т.е., когда Вы НЕ находитесь в ситуации, которая, по Вашему опыту, может вызвать приступ)\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Внезапные неожиданные приступы, сопровождающиеся только одним или двумя из вышеперечисленных признаков, возникающие по незначительным поводам или без повода (т.е., когда Вы НЕ находитесь в ситуации, которая, по Вашему опыту, может вызвать приступ)\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Периоды тревоги, нарастающей по мере того, как Вы готовитесь сделать что-то, что, по Вашему опыту, может вызвать тревогу, причем более сильную, чем ту, что в таких случаях испытывает большинство людей\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Периоды тревоги, нарастающей по мере того, как Вы готовитесь сделать что-то, что, по Вашему опыту, может вызвать тревогу, причем более сильную, чем ту, что в таких случаях испытывает большинство людей\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Избегание пугающих вас ситуаций\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Избегание пугающих вас ситуаций\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Состояние зависимости от других людей\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Состояние зависимости от других людей\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Напряженность и неспособность расслабиться\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Напряженность и неспособность расслабиться\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Тревога, \"нервозность\", беспокойство\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Тревога, \"нервозность\", беспокойство\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Приступы повышенной чувствительности к звуку, свету и прикосновению\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Приступы повышенной чувствительности к звуку, свету и прикосновению\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Приступы поноса\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Приступы поноса\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Чрезмерное беспокойство о собственном здоровье\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Чрезмерное беспокойство о собственном здоровье\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Ощущение усталости, слабости и повышенной истощаемости\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Ощущение усталости, слабости и повышенной истощаемости\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Головные боли или боли в шее\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Головные боли или боли в шее\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Трудности засыпания\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Трудности засыпания\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Просыпания среди ночи или беспокойный сон\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Просыпания среди ночи или беспокойный сон\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Неожиданные периоды депрессии, возникающие по незначительным поводам или без повода\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Неожиданные периоды депрессии, возникающие по незначительным поводам или без повода\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Перепады настроения и эмоций, которые в основном зависят от того, что происходит вокруг Вас\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Перепады настроения и эмоций, которые в основном зависят от того, что происходит вокруг Вас\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Повторяющиеся и неотступные представления, мысли, импульсы или образы, которые Вам кажутся тягостными, противными, бессмысленными или отталкивающими\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Повторяющиеся и неотступные представления, мысли, импульсы или образы, которые Вам кажутся тягостными, противными, бессмысленными или отталкивающими\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     },
                     new QuestionRateAnswer()
                     {
-                        Text = "Повторение одного и того же действия как ритуала, например, повторные перепроверки, перемывание и пересчет при отсутствии в этом действии необходимости\n",
-                        Variants = new() { "Нисколько - 0, Немного - 1, Умеренно - 2, Сильно - 3, Крайне сильно - 4" },
+                        Questions = { "Повторение одного и того же действия как ритуала, например, повторные перепроверки, перемывание и пересчет при отсутствии в этом действии необходимости\n" },
+                        Variants = new() { "Нисколько - 0", "Немного - 1", "Умеренно - 2", "Сильно - 3", "Крайне сильно - 4" },
                         VariantsTag = new() { Test.DEFAULT_TAG },
                         MaxRate = 4,
                         MinRate = 0,
-                        UnicValues = true
+                        UnicValues = false
                     }
                 },
                 new()
@@ -361,72 +361,107 @@ namespace Core
                     new QuestionRateAnswer()
                     {
                         Text = "Я пpинимаю важные pешения, основанные на:",
-                        Variants = new() { 
+                        Questions = new() { 
                             "хоpошо пpовеpенных чyвствах",
                             "том, что звyчит лyчше",
                             "том, что выглядит для меня лyчше всего",
                             "точном, стаpательном изyчении вопpоса"
                         },
+                        Variants = new()
+                        {
+                            "1",
+                            "2",
+                            "3",
+                            "4"
+                        },
                         VariantsTag = new() { "K", "A", "V", "D" },
                         MaxRate = 4,
                         MinRate = 1,
-                        UnicValues = false
+                        UnicValues = true
                     },
                     new QuestionRateAnswer()
                     {
                         Text = "Во вpемя споpа на меня чаще всего влияет:",
-                        Variants = new() {
+                        Questions = new() {
                             "тон голоса дpyгого человека",
                             "могy ли я или нет ясно видеть точкy зpения дpyгого человека",
                             "логика аpгyментов дpyгого человека",
                             "чyвствyю я или нет, что я в контакте с дpyгими настоящими чyвствами этого человека"
                         },
+                        Variants = new()
+                        {
+                            "1",
+                            "2",
+                            "3",
+                            "4"
+                        },
                         VariantsTag = new() { "A", "V", "D", "K" },
                         MaxRate = 4,
                         MinRate = 1,
-                        UnicValues = false
+                        UnicValues = true
                     },
                     new QuestionRateAnswer()
                     {
                         Text = "Я могy очень пpосто понять свое настpоение с помощью:",
-                        Variants = new() {
+                        Questions = new() {
                             "того, как я одеваюсь",
                             "чyвств, котоpые я pазделяю",
                             "слов, котоpые я выбиpаю",
                             "своего тона голоса"
                         },
+                        Variants = new()
+                        {
+                            "1",
+                            "2",
+                            "3",
+                            "4"
+                        },
                         VariantsTag = new() { "V", "K", "D", "A" },
                         MaxRate = 4,
                         MinRate = 1,
-                        UnicValues = false
+                        UnicValues = true
                     },
                     new QuestionRateAnswer()
                     {
                         Text = "Для меня пpосто:",
-                        Variants = new() {
+                        Questions = new() {
                             "подобpать идеальнyю гpомкость и звyчание на стеpео системе",
                             "выбpать наиболее интеллектyальные места,  по интеpесyющемy меня пpедметy",
                             "выбpать чpезвычайно yдобнyю мебель",
                             "выбpать комбинации (сочетания) насыщенных цветов"
                         },
+                        Variants = new()
+                        {
+                            "1",
+                            "2",
+                            "3",
+                            "4"
+                        },
                         VariantsTag = new() { "A", "D", "K", "V" },
                         MaxRate = 4,
                         MinRate = 1,
-                        UnicValues = false
+                        UnicValues = true
                     },
                     new QuestionRateAnswer()
                     {
                         Text = "",
-                        Variants = new() {
+                        Questions = new() {
                             "Я бyквально настpаиваюсь на звyки в моем окpyжении",
                             "Я хоpошо yмею осмысливать новые факты и данные",
                             "Я  очень чyвствителен к томy,  как пpедметы одежды воздействyют на меня",
                             "Я сильно pеагиpyю на цвета и на то, как выглядит комната"
                         },
+                        Variants = new()
+                        {
+                            "1",
+                            "2",
+                            "3",
+                            "4"
+                        },
                         VariantsTag = new() { "A", "D", "K", "V" },
                         MaxRate = 4,
                         MinRate = 1,
-                        UnicValues = false
+                        UnicValues = true
                     },
                 },
                 new()
