@@ -52,12 +52,14 @@ namespace TestV
             if (prevQuestion != null)
                 MainGrid.Children.Remove(prevQuestion);
             MainGrid.Children.Add(q);
+            CurrentQuestLBL.Content = (questionIndex + 1).ToString();
         }
 
         private void CalculateResultat()
         {
             var correctCheck = new List<bool>();
             _test.QuestionList.ForEach((x) => correctCheck.Add(x.AnswerIsCorrect()));
+            var sum = new Dictionary<string, int>();
 
             for (int i = 0; i < _test.QuestionList.Count; i++)
             {
@@ -65,12 +67,21 @@ namespace TestV
 
                 System.Diagnostics.Debug.Write($"quest [{_test.QuestionList[i].Text}]");
                 foreach (var a in q)
+                {
+
                     System.Diagnostics.Debug.Write($"[{a.Key}] [{a.Value}]");
+                    if (sum.Keys.Contains(a.Key))
+                        sum[a.Key] += a.Value;
+                    else
+                        sum.Add(a.Key, a.Value);
+                }
                 System.Diagnostics.Debug.WriteLine($"_");
             }
 
             foreach (var a in correctCheck)
                 System.Diagnostics.Debug.Write($"[{a}]-");
+            foreach (var a in sum)
+                System.Diagnostics.Debug.Write($"[{a.Key}] [{a.Value}]");
             System.Diagnostics.Debug.WriteLine($"_");
         }
 

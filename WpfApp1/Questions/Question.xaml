@@ -11,7 +11,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Name="QuestionTextLBL" Text="Question" HorizontalAlignment="Center" Grid.Row="0"/>
+        <TextBlock Name="QuestionTextLBL" Text="Question" HorizontalAlignment="Center" Grid.Row="0" TextWrapping="Wrap" Margin="3"/>
         <StackPanel Name="QuestionPanel" Grid.Row="1">
             
         </StackPanel>

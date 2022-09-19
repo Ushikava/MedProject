@@ -13,9 +13,10 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         
-        <UniformGrid Grid.Row="1" Columns="2" Margin="3">
-            <Button Click="Button_Click_prev">prev</Button>
-            <Button Click="Button_Click_next">next</Button>
+        <UniformGrid Grid.Row="1" Columns="3" Margin="3">
+            <Button Click="Button_Click_prev" Margin="3">prev</Button>
+            <Label HorizontalAlignment="Center" Name="CurrentQuestLBL">0</Label>
+            <Button Click="Button_Click_next" Margin="3">next</Button>
         </UniformGrid>
     </Grid>
 </Window>
