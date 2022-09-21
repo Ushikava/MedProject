@@ -178,7 +178,7 @@ namespace Core
             if (VariantsTag.Count > 1)
                 for (int i = 0; i < VariantsTag.Count; i++)
                 {
-                    if (Answers[i] > 0)
+                    if (Answers[i] >= 0)
                     {
                         if (res.Keys.Contains(VariantsTag[i]))
                             res[VariantsTag[i]] += Answers[i];
@@ -188,11 +188,10 @@ namespace Core
                 }
             else
             {
-
                 res.Add(Test.DEFAULT_TAG, 0);
                 for (int i = 0; i < Variants.Count; i++)
                 {
-                    if (Answers[i] > 0)
+                    if (Answers[i] >= 0)
                     {
                         res[Test.DEFAULT_TAG] += Answers[i];
 
