@@ -43,7 +43,7 @@ namespace TestV.Questions.Elements
             foreach (var cont in question.Variants)
             {
                 RowDefinition row = new RowDefinition();
-                //MainGrid.RowDefinitions.Add(row);
+                MainGrid.RowDefinitions.Add(row);
                 RadioButton new_radio = new RadioButton();
                 new_radio.Content = cont;
                 new_radio.Checked += Answer_changed;
@@ -51,8 +51,10 @@ namespace TestV.Questions.Elements
                 new_radio.Name = "answer_" + row_ind;
                 new_radio.IsChecked = question.Answers[index] >= 0 && row_ind == question.Answers[index];
                 
-                new_radio.HorizontalAlignment = HorizontalAlignment.Center;
+                new_radio.HorizontalAlignment = HorizontalAlignment.Left;
                 new_radio.VerticalAlignment= VerticalAlignment.Center;
+                Grid.SetRow(new_radio, row_ind++);
+                Grid.SetColumn(new_radio, 1);
 
                 MainGrid.Children.Add(new_radio);
             }

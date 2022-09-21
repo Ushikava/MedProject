@@ -10,9 +10,12 @@
     <Grid>
         <StackPanel Name="QuestionPanel">
             <TextBlock Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-            <UniformGrid Name="MainGrid">
-
-            </UniformGrid>
+            <Grid Name="MainGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="95*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>
